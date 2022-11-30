@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.penguin.common.mapper.LogRecordMapper">
+
+    <resultMap type="cn.penguin.common.entity.LogRecordDTO" id="UserMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="relationId" column="relation_id" jdbcType="INTEGER"/>
+        <result property="module" column="module" jdbcType="VARCHAR"/>
+        <result property="operationType" column="operation_type" jdbcType="INTEGER"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="isSuccess" column="is_success" jdbcType="INTEGER"/>
+        <result property="params" column="params" typeHandler="cn.penguin.common.handler.JsonTypeHandler"/>
+        <result property="result" column="result" typeHandler="cn.penguin.common.handler.JsonTypeHandler"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sys_log_record(id, relation_id, module, operation_type, description, is_success, params, result)
+        values (#{id}, #{relationId}, #{module}, #{operationType}, #{description}, #{isSuccess},
+            #{params,typeHandler=cn.penguin.common.handler.JsonTypeHandler},
+                #{result,typeHandler=cn.penguin.common.handler.JsonTypeHandler})
+    </insert>
+
+    <select id="selectList" resultMap="UserMap">
+        select * from sys_log_record
+        <where>
+            <if test="relationId != null ">
+                relation_id = #{relationId}
+            </if>
+            <if test="params != null">
+                <choose>
+                    <when test="paramType == 1">
+                        and JSON_CONTAINS(params, JSON_OBJECT(#{paramCondition},#{params}))
+                    </when>
+                    <otherwise>
+                        and JSON_EXTRACT(params, CONCAT('$.',#{paramCondition},'')) = #{params}
+                    </otherwise>
+                </choose>
+            </if>
+            <if test="result != null">
+                <choose>
+                    <when test="resultType == 1">
+                        and JSON_CONTAINS(result, JSON_OBJECT(#{resultCondition},#{result}))
+                    </when>
+                    <otherwise>
+                        and JSON_EXTRACT(result, CONCAT('$.',#{resultCondition},'')) = #{result}
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+    </select>
+</mapper>
