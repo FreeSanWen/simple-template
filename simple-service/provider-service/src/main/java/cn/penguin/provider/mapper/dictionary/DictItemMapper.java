@@ -1,7 +1,7 @@
 package cn.penguin.provider.mapper.dictionary;
 
 import cn.penguin.common.mapper.BaseMapper;
-import cn.penguin.provider.entity.dictionary.DictItemDTO;
+import cn.penguin.provider.entity.dictionary.DictItem;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2022-11-27 11:02:58
  */
 @Mapper
-public interface DictItemMapper extends BaseMapper<DictItemDTO> {
+public interface DictItemMapper extends BaseMapper<DictItem> {
 
 
 }

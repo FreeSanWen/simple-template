@@ -1,4 +1,4 @@
-package cn.penguin.provider.common.enums;
+package cn.penguin.common.enums;
 
 import lombok.Getter;
 

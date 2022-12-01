@@ -1,7 +1,5 @@
 package cn.penguin.common.aspect;
 
-import cn.monitor4all.logRecord.context.LogRecordContext;
-import cn.monitor4all.logRecord.function.CustomFunctionRegistrar;
 import cn.penguin.common.annotation.RequireParam;
 import cn.penguin.common.utils.ObjectUtil;
 import cn.penguin.common.utils.ValidateUtil;
@@ -68,8 +66,7 @@ public class RequireParamAspect implements Ordered {
             size = size << 1;
         }
         Map map = new HashMap<>(size);
-        StandardEvaluationContext context = LogRecordContext.getContext();
-        CustomFunctionRegistrar.register(context);
+        StandardEvaluationContext context = new StandardEvaluationContext();
         if (params != null) {
             for (int len = 0; len < params.length; len++) {
                 context.setVariable(params[len], args[len]);

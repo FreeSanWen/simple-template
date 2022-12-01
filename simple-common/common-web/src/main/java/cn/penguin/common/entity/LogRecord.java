@@ -7,7 +7,7 @@ import lombok.Data;
  * @since 2022-11-22 11:38:00
  */
 @Data
-public class LogRecordDTO extends LogRecord {
+public class LogRecord extends LogRecordEntity {
 
     /**
      * 条件字段名称

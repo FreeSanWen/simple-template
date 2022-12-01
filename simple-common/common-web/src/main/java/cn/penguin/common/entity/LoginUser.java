@@ -12,7 +12,7 @@ import java.util.Collection;
  * @since 2022/12/1 9:56
  */
 @Data
-public class LoginUser extends LoginUserInfo implements UserDetails, Serializable {
+public class LoginUser extends LoginUserEntity implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1L;
 

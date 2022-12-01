@@ -21,9 +21,7 @@
 
         <mybatis.version>2.2.2</mybatis.version>
         <pagehelper.version>1.4.5</pagehelper.version>
-        <javassist.version>3.29.2-GA</javassist.version>
         <feign-okhttp.version>11.8</feign-okhttp.version>
-        <log-record.version>1.3.1</log-record.version>
         <guava.version>31.1-jre</guava.version>
     </properties>
 
@@ -71,22 +69,11 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.version}</version>
             </dependency>
-            <!-- javassist -->
-            <dependency>
-                <groupId>org.javassist</groupId>
-                <artifactId>javassist</artifactId>
-                <version>${javassist.version}</version>
-            </dependency>
             <!-- okhttp -->
             <dependency>
                 <groupId>io.github.openfeign</groupId>
                 <artifactId>feign-okhttp</artifactId>
                 <version>${feign-okhttp.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.monitor4all</groupId>
-                <artifactId>log-record-starter</artifactId>
-                <version>${log-record.version}</version>
             </dependency>
             <!-- guava -->
             <dependency>

@@ -1,6 +1,6 @@
 package cn.penguin.common.mapper;
 
-import cn.penguin.common.entity.LogRecordDTO;
+import cn.penguin.common.entity.LogRecord;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface LogRecordMapper {
 
-    int insert(LogRecordDTO entity);
+    int insert(LogRecord entity);
 
-    List<LogRecordDTO> selectList(LogRecordDTO query);
+    List<LogRecord> selectList(LogRecord query);
 }

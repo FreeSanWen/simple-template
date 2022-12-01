@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @since 2022-11-28 17:18
  */
 @Data
-public class LoginUserInfo implements Serializable {
+public class LoginUserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

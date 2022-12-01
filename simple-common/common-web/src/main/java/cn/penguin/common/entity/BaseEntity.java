@@ -4,8 +4,12 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * @author wensy
+ * @since 2022-11-30 11:11
+ */
 @Data
-public class Base implements Serializable {
+public class BaseEntity implements Serializable {
 
     private Long id;
 

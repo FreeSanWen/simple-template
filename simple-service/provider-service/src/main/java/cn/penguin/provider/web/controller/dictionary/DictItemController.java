@@ -1,7 +1,6 @@
 package cn.penguin.provider.web.controller.dictionary;
 
-import cn.monitor4all.logRecord.annotation.OperationLog;
-import cn.penguin.provider.entity.dictionary.DictItemDTO;
+import cn.penguin.provider.entity.dictionary.DictItem;
 import cn.penguin.provider.service.dictionary.IDictItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,24 +22,22 @@ public class DictItemController {
     }
 
     @GetMapping("/query")
-    public DictItemDTO query(DictItemDTO query){
+    public DictItem query(DictItem query){
         return dictItemService.selectOne(query);
     }
 
     @GetMapping("/list")
-    public List<DictItemDTO> list(DictItemDTO query){
+    public List<DictItem> list(DictItem query){
         return dictItemService.selectList(query);
     }
 
     @PostMapping("/save")
-    @OperationLog( bizId = "#entity.id",bizType = "inesrt")
-    public DictItemDTO save(@RequestBody DictItemDTO entity) {
+    public DictItem save(@RequestBody DictItem entity) {
         return dictItemService.save(entity);
     }
 
     @PostMapping("/update")
-    @OperationLog( bizId = "#entity.id",bizType = "update")
-    public Boolean update(@RequestBody DictItemDTO entity) {
+    public Boolean update(@RequestBody DictItem entity) {
         return dictItemService.update(entity);
     }
 }

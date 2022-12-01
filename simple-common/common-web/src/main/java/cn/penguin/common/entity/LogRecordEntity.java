@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @since 2022-11-22 11:38:00
  */
 @Data
-public class LogRecord implements Serializable {
+public class LogRecordEntity implements Serializable {
 
     private Long id;
 
@@ -22,7 +22,7 @@ public class LogRecord implements Serializable {
     /**
      * 模块 BusinessModuleEnum
      */
-    private String module;
+    private Integer module;
 
     /**
      * 操作 BusinessOperationEnum
@@ -53,4 +53,8 @@ public class LogRecord implements Serializable {
      * 创建时间
      */
     private LocalDateTime createTime;
+
+    private Long creatorId;
+
+    private String creatorName;
 }

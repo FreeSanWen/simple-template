@@ -1,6 +1,6 @@
 package cn.penguin.common.service.impl;
 
-import cn.penguin.common.entity.Base;
+import cn.penguin.common.entity.BaseEntity;
 import cn.penguin.common.mapper.BaseMapper;
 import cn.penguin.common.service.IBaseService;
 import cn.penguin.common.utils.CollectionsUtil;
@@ -15,7 +15,7 @@ import java.util.Objects;
  * @author wensy
  * @since 2022-11-28 10:15
  */
-public class BaseService<T extends Base> implements IBaseService<T> {
+public class BaseService<T extends BaseEntity> implements IBaseService<T> {
 
     private final BaseMapper<T> baseMapper;
 

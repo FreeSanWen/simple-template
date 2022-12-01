@@ -1,9 +1,9 @@
 package cn.penguin.provider.web.client.authentic;
 
 import cn.penguin.common.annotation.CurrentUser;
-import cn.penguin.common.entity.LoginUserInfo;
+import cn.penguin.common.entity.LoginUserEntity;
 import cn.penguin.common.utils.JsonUtil;
-import cn.penguin.provider.entity.authentic.UserDTO;
+import cn.penguin.provider.entity.authentic.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserFeignClient {
 
     @GetMapping("/query")
-    public String query(UserDTO query, @CurrentUser LoginUserInfo user){
+    public String query(User query, @CurrentUser LoginUserEntity user){
         System.out.println(JsonUtil.toString(user));
         return "provider-service：user query by feign client";
     }

@@ -23,6 +23,7 @@
     <!-- mybatis 输出sql 这里没法用通配符，所以改成如下样子 mybatis.configuration.log-prefix=dao. 这里用 name=dao 就能输出 sql -->
 <!--    <logger name="dao" level="DEBUG"></logger>-->
     <logger name="cn.penguin.provider.mapper" level="debug"></logger>
+    <logger name="cn.penguin.common.mapper" level="debug"></logger>
     <!-- lettuce 提高日志级别，info的话会持续输出重连信息 -->
     <logger name="io.lettuce.core.protocol" level="error"></logger>
 

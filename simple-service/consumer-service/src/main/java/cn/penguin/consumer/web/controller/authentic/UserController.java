@@ -1,7 +1,7 @@
 package cn.penguin.consumer.web.controller.authentic;
 
 import cn.penguin.common.annotation.CurrentUser;
-import cn.penguin.common.entity.LoginUserInfo;
+import cn.penguin.common.entity.LoginUserEntity;
 import cn.penguin.consumer.feign.ProviderFeign;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/query")
-    public String query(@RequestParam(value = "username")String username, @CurrentUser LoginUserInfo loginUser) {
+    public String query(@RequestParam(value = "username")String username, @CurrentUser LoginUserEntity loginUser) {
         Map map = new HashMap(2);
         map.put("username", username);
         return providerFeign.query(map);

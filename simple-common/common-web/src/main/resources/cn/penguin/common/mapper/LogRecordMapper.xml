@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.penguin.common.mapper.LogRecordMapper">
 
-    <resultMap type="cn.penguin.common.entity.LogRecordDTO" id="UserMap">
+    <resultMap type="cn.penguin.common.entity.LogRecord" id="UserMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="relationId" column="relation_id" jdbcType="INTEGER"/>
         <result property="module" column="module" jdbcType="VARCHAR"/>
@@ -12,15 +12,17 @@
         <result property="params" column="params" typeHandler="cn.penguin.common.handler.JsonTypeHandler"/>
         <result property="result" column="result" typeHandler="cn.penguin.common.handler.JsonTypeHandler"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="creatorId" column="creator_id" jdbcType="INTEGER"/>
+        <result property="creatorName" column="creator_name" jdbcType="VARCHAR"/>
     </resultMap>
 
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into sys_log_record(id, relation_id, module, operation_type, description, is_success, params, result)
+        insert into sys_log_record(id, relation_id, module, operation_type, description, is_success, params, result,creator_id,creator_name)
         values (#{id}, #{relationId}, #{module}, #{operationType}, #{description}, #{isSuccess},
             #{params,typeHandler=cn.penguin.common.handler.JsonTypeHandler},
-                #{result,typeHandler=cn.penguin.common.handler.JsonTypeHandler})
+                #{result,typeHandler=cn.penguin.common.handler.JsonTypeHandler},#{creatorId},#{creatorName})
     </insert>
 
     <select id="selectList" resultMap="UserMap">

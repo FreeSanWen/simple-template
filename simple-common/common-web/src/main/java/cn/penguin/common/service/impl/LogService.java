@@ -1,6 +1,7 @@
 package cn.penguin.common.service.impl;
 
-import cn.penguin.common.entity.LogRecordDTO;
+import cn.penguin.common.constant.LogbackConstant;
+import cn.penguin.common.entity.LogRecord;
 import cn.penguin.common.mapper.LogRecordMapper;
 import cn.penguin.common.service.ILogService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,9 +22,9 @@ public class LogService implements ILogService {
     }
 
     @Override
-    public void saveLog(LogRecordDTO entity) {
-        log.info("==>保存操作日志开始");
+    public void saveLog(LogRecord entity) {
+        log.info("{}保存操作日志开始", LogbackConstant.LOG_PREFIX);
         logRecordMapper.insert(entity);
-        log.info("==>保存操作日志结束");
+        log.info("{}保存操作日志结束", LogbackConstant.LOG_PREFIX);
     }
 }

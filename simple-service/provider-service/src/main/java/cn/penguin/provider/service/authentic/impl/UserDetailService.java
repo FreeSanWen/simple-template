@@ -1,7 +1,7 @@
 package cn.penguin.provider.service.authentic.impl;
 
 import cn.penguin.common.entity.LoginUser;
-import cn.penguin.provider.entity.authentic.UserDTO;
+import cn.penguin.provider.entity.authentic.User;
 import cn.penguin.provider.mapper.authentic.UserMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,9 +24,9 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDTO userDTO = new UserDTO();
+        User userDTO = new User();
         userDTO.setUsername(username);
-        UserDTO user = userMapper.selectOne(userDTO);
+        User user = userMapper.selectOne(userDTO);
         LoginUser userDetails = new LoginUser();
         BeanUtils.copyProperties(user, userDetails);
         return userDetails;

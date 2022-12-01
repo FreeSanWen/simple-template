@@ -1,7 +1,7 @@
 package cn.penguin.provider.service.dictionary;
 
 import cn.penguin.common.service.IBaseService;
-import cn.penguin.provider.entity.dictionary.DictDTO;
+import cn.penguin.provider.entity.dictionary.Dict;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @author Wensy
  * @since 2022/11/27 17:51:00
  */
-public interface IDictService extends IBaseService<DictDTO> {
+public interface IDictService extends IBaseService<Dict> {
 
     /**
      * 查询单行记录
@@ -17,7 +17,7 @@ public interface IDictService extends IBaseService<DictDTO> {
      * @param query 查询条件
      * @return UserDTO
      */
-    DictDTO selectOne(DictDTO query);
+    Dict selectOne(Dict query);
 
     /**
      * 查询多行记录
@@ -25,7 +25,7 @@ public interface IDictService extends IBaseService<DictDTO> {
      * @param query 查询条件
      * @return List<UserDTO>
      */
-    List<DictDTO> selectList(DictDTO query);
+    List<Dict> selectList(Dict query);
 
     /**
      * 保存一条记录
@@ -33,7 +33,7 @@ public interface IDictService extends IBaseService<DictDTO> {
      * @param entity 实体
      * @return UserDTO
      */
-    DictDTO save(DictDTO entity);
+    Dict save(Dict entity);
 
     /**
      * 更新一条记录
@@ -41,5 +41,5 @@ public interface IDictService extends IBaseService<DictDTO> {
      * @param entity 实体
      * @return UserDTO
      */
-    Boolean update(DictDTO entity);
+    Boolean update(Dict entity);
 }
