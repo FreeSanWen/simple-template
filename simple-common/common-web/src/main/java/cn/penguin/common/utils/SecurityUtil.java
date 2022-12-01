@@ -81,7 +81,7 @@ public class SecurityUtil {
      * @param request
      * @return
      */
-    private static String getToken(HttpServletRequest request) {
+    public static String getToken(HttpServletRequest request) {
         String token = request.getHeader(SecurityConstant.AUTHORIZATION);
         if (ObjectUtil.isNotEmpty(token) && token.startsWith(SecurityConstant.TOKEN_PREFIX)) {
             token = token.replace(SecurityConstant.TOKEN_PREFIX, "");

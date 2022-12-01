@@ -8,6 +8,10 @@ import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Wensy
@@ -24,6 +28,7 @@ public class OpenFeignInterceptor implements RequestInterceptor {
         requestTemplate.header(LogbackConstant.TRACE_ID, traceId);
         log.info("{}调用feign请求", LogbackConstant.LOG_PREFIX);
         //设置token
-        requestTemplate.header(SecurityConstant.AUTHORIZATION, SecurityUtil.getToken());
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        requestTemplate.header(SecurityConstant.AUTHORIZATION, SecurityUtil.getToken(request));
     }
 }
