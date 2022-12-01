@@ -14,18 +14,6 @@ public class DictFeignClient {
 
     @GetMapping("/query")
     public String query(){
-        if (true) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }).run();
-        }
         return "provider-service：dict query by feign client";
     }
 }

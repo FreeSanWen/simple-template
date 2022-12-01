@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property name="APP_NAME" value="consumer"/>
+    <property name="LOG_HOME" value="./logs" />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>【%d{yyyy-MM-dd HH:mm:ss.SSS}】 【%X{TRACE_ID}】 %green(【%thread】) %highlight(【%-5level】) %blue(【%logger{50}】) - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--    <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <File>${LOG_HOME}/${APP_NAME}.log</File>-->
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+    <!--            <FileNamePattern>${LOG_HOME}/${APP_NAME}.log.%d{yyyy-MM-dd}.%i.log</FileNamePattern>-->
+    <!--            <MaxHistory>30</MaxHistory>-->
+    <!--            <maxFileSize>10MB</maxFileSize>-->
+    <!--        </rollingPolicy>-->
+    <!--        &lt;!&ndash;这里替换成AspectLogbackEncoder&ndash;&gt;-->
+    <!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+    <!--           <pattern>【%d{yyyy-MM-dd HH:mm:ss.SSS}】%green(【%thread】) %highlight(【%-5level】) %blue(【%logger{50}】) - %msg%n</pattern>-->
+    <!--        </encoder>-->
+    <!--    </appender>-->
+
+    <!-- mybatis 输出sql 这里没法用通配符，所以改成如下样子 mybatis.configuration.log-prefix=dao. 这里用 name=dao 就能输出 sql -->
+<!--    <logger name="dao" level="DEBUG"></logger>-->
+    <logger name="cn.penguin.consumer.mapper"></logger>
+    <!-- lettuce 提高日志级别，info的话会持续输出重连信息 -->
+    <logger name="io.lettuce.core.protocol" level="error"></logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <!--        <appender-ref ref="FILE" />-->
+    </root>
+</configuration>

@@ -17,6 +17,10 @@
     </description>
 
     <dependencies>
-
+        <dependency>
+            <groupId>cn.penguin.framework</groupId>
+            <artifactId>gateway-service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 </project>
