@@ -19,7 +19,7 @@ public class User extends Base {
     /**
      * 账号
      */
-    private String username;
+    public String username;
 
     /**
      * 密码

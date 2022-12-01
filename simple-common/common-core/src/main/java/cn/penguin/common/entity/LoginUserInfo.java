@@ -3,7 +3,6 @@ package cn.penguin.common.entity;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * 当前登录用户
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
  * @since 2022-11-28 17:18
  */
 @Data
-public class LoginUser implements Serializable {
+public class LoginUserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -51,24 +50,14 @@ public class LoginUser implements Serializable {
     private Integer isDelete;
 
     /**
-     * 创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 最后更新时间
-     */
-    private LocalDateTime updateTime;
-
-    /**
      * 登陆时间
      */
-    private LocalDateTime loginTime;
+    private long loginTime;
 
     /**
      * 过期时间
      */
-    private LocalDateTime expireTime;
+    private long expireTime;
 
     /**
      * token

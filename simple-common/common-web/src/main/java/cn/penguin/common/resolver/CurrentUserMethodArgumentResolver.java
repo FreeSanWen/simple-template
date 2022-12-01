@@ -2,10 +2,8 @@ package cn.penguin.common.resolver;
 
 import cn.penguin.common.annotation.CurrentUser;
 import cn.penguin.common.constant.LogbackConstant;
-import cn.penguin.common.entity.LoginUser;
-import cn.penguin.common.utils.ObjectUtil;
+import cn.penguin.common.entity.LoginUserInfo;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.security.SecurityUtil;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -24,7 +22,7 @@ public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentR
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         //判断是否支持使用@CurrentUser注解的参数; 如果该参数注解有@CurrentUser且参数类型是User
-        return parameter.getParameterAnnotation(CurrentUser.class) != null && parameter.getParameterType() == LoginUser.class ;
+        return parameter.getParameterAnnotation(CurrentUser.class) != null && parameter.getParameterType() == LoginUserInfo.class ;
     }
 
     @Override

@@ -1,10 +1,11 @@
 package cn.penguin.common.interceptor;
 
 import cn.penguin.common.constant.LogbackConstant;
+import cn.penguin.common.constant.SecurityConstant;
+import cn.penguin.common.utils.SecurityUtil;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.security.SecurityUtil;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,6 @@ public class OpenFeignInterceptor implements RequestInterceptor {
         requestTemplate.header(LogbackConstant.TRACE_ID, traceId);
         log.info("{}调用feign请求", LogbackConstant.LOG_PREFIX);
         //设置token
-//        requestTemplate.header(SecurityConstant.AUTHORIZATION, SecurityUtil.getToken());
+        requestTemplate.header(SecurityConstant.AUTHORIZATION, SecurityUtil.getToken());
     }
 }

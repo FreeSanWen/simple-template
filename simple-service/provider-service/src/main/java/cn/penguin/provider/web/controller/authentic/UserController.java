@@ -1,10 +1,8 @@
 package cn.penguin.provider.web.controller.authentic;
 
 import cn.monitor4all.logRecord.annotation.OperationLog;
-import cn.penguin.common.annotation.CurrentUser;
 import cn.penguin.common.constant.LogbackConstant;
 import cn.penguin.common.constant.RedisConstant;
-import cn.penguin.common.entity.LoginUser;
 import cn.penguin.common.utils.IdUtil;
 import cn.penguin.common.utils.RedisUtil;
 import cn.penguin.provider.entity.authentic.UserDTO;
