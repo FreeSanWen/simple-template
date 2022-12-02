@@ -35,13 +35,13 @@ public class RedisUtil {
      * @param key
      * @return boolean
      */
-    public static boolean containsKey(String key){
+    public static boolean containsKey(String key) {
         try {
             if (ObjectUtils.isEmpty(key)) {
                 return false;
             }
             Boolean result = redisTemplate.hasKey(key);
-            return  null == result ? false : result;
+            return null == result ? false : result;
         } catch (Exception e) {
             log.error("redis 获取 key：{} 失败", key, e);
         }
@@ -69,7 +69,7 @@ public class RedisUtil {
      * @param key
      * @param value
      */
-    public static void set(String key, Object value, long expireTime, TimeUnit timeUnit){
+    public static void set(String key, Object value, long expireTime, TimeUnit timeUnit) {
         redisTemplate.opsForValue().set(key, value, expireTime, timeUnit);
     }
 
@@ -79,7 +79,7 @@ public class RedisUtil {
      * @param key
      * @return boolean
      */
-    public static boolean delete(String key){
+    public static boolean delete(String key) {
         if (containsKey(key)) {
             redisTemplate.delete(key);
         }
@@ -119,9 +119,9 @@ public class RedisUtil {
      * 加锁
      *
      * @param key
-     * @param value     保证是加锁的线程
-     * @param time      过期时间
-     * @param timeUnit  过期时间单位
+     * @param value    保证是加锁的线程
+     * @param time     过期时间
+     * @param timeUnit 过期时间单位
      * @return
      */
     public static Boolean lock(String key, Long value, Long time, TimeUnit timeUnit) {
@@ -142,26 +142,26 @@ public class RedisUtil {
     /**
      * 简单的加锁模板方法
      *
-     * @param key 加锁的key
+     * @param key      加锁的key
      * @param function 执行的具体业务逻辑
-     * @param param 入参
-     * @return
+     * @param param    入参
      * @param <T>
      * @param <R>
+     * @return
      */
-    public static <T,R> R lock(String key, Function<T,R> function,T param) {
+    public static <T, R> R lock(String key, Function<T, R> function, T param) {
         Long id = IdUtil.getId();
         Boolean lock = RedisUtil.lock(key, id);
         if (lock) {
             log.info("{}获得锁", LogbackConstant.LOG_PREFIX);
-            try{
+            try {
                 //加锁成功，执行具体逻辑
                 return function.apply(param);
             } finally {
                 //解锁
                 RedisUtil.releaseLock(key, id);
             }
-        }else{
+        } else {
             log.info("{}获取锁失败", LogbackConstant.LOG_PREFIX);
             //这里可以选择重试
         }
