@@ -1,6 +1,6 @@
 package cn.penguin.common.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -8,12 +8,17 @@ import java.io.Serializable;
  * @author wensy
  * @since 2022-11-30 11:11
  */
-@Data
-public class BaseEntity implements Serializable {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class BaseEntity<T> implements Serializable {
 
     private Long id;
 
     private Integer pageNum;
 
     private Integer pageSize;
+
+
 }
