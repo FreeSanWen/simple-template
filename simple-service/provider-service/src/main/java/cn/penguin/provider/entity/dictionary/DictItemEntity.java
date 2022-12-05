@@ -2,6 +2,7 @@ package cn.penguin.provider.entity.dictionary;
 
 import cn.penguin.common.entity.BaseEntity;
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
  * @since 2022-11-27 1:24
  */
 @Data
+@Table("sys_dict_item")
 public class DictItemEntity extends BaseEntity {
     private static final long serialVersionUID = 1L;
 

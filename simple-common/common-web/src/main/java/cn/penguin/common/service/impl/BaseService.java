@@ -2,25 +2,29 @@ package cn.penguin.common.service.impl;
 
 import cn.penguin.common.entity.BaseEntity;
 import cn.penguin.common.mapper.BaseMapper;
+import cn.penguin.common.repository.BaseRepository;
 import cn.penguin.common.service.IBaseService;
-import cn.penguin.common.utils.CollectionsUtil;
 import cn.penguin.common.utils.IdUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * @author wensy
  * @since 2022-11-28 10:15
  */
-public class BaseService<T extends BaseEntity> implements IBaseService<T> {
+public class BaseService<T extends BaseEntity,ID> implements IBaseService<T,ID> {
 
     private final BaseMapper<T> baseMapper;
+    private final BaseRepository<T, ID> baseRepository;
 
-    public BaseService(BaseMapper<T> baseMapper) {
+    public BaseService(BaseMapper<T> baseMapper,BaseRepository<T, ID> baseRepository) {
         this.baseMapper = baseMapper;
+        this.baseRepository = baseRepository;
     }
 
     @Override
@@ -34,30 +38,19 @@ public class BaseService<T extends BaseEntity> implements IBaseService<T> {
 
     @Override
     public T save(T record) {
-        if (Objects.nonNull(record) && Objects.isNull(record.getId())) {
-            record.setId(IdUtil.getId());
-        }
-        baseMapper.insertSelective(record);
-        return record;
+        return baseRepository.save(record);
     }
 
     @Override
-    public Boolean insertBatch(List<T> records) {
-        if (CollectionsUtil.isNotEmpty(records)) {
-            records.stream().forEach(record -> {
-                if (Objects.nonNull(record) && Objects.isNull(record.getId())) {
-                    record.setId(IdUtil.getId());
-                }
-            });
-        }else{
-            return false;
-        }
-        return baseMapper.insertBatch(records) > 0;
+    public Boolean saveAll(List<T> records) {
+        baseRepository.saveAll(records);
+        return true;
     }
 
     @Override
-    public Boolean deleteById(Long id) {
-        return baseMapper.deleteById(id) > 0;
+    public Boolean deleteById(ID id) {
+        baseRepository.deleteById(id);
+        return true;
     }
 
     @Override
@@ -66,13 +59,8 @@ public class BaseService<T extends BaseEntity> implements IBaseService<T> {
     }
 
     @Override
-    public Boolean modify(T record) {
-        return baseMapper.updateSelectiveById(record) > 0;
-    }
-
-    @Override
-    public T selectById(Long id) {
-        return baseMapper.selectById(id);
+    public T selectById(ID id) {
+        return baseRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -83,6 +71,11 @@ public class BaseService<T extends BaseEntity> implements IBaseService<T> {
     @Override
     public List<T> selectList(T query) {
         return baseMapper.selectList(query);
+    }
+
+    @Override
+    public List<T> selectList() {
+        return StreamSupport.stream(baseRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }
 
     @Override

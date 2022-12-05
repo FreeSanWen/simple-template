@@ -54,6 +54,7 @@ public class UserController {
 
     @PostMapping("/modify")
     public Boolean modify(@RequestBody User entity) {
-        return userService.update(entity);
+        userRepository.save(entity);
+        return true;
     }
 }

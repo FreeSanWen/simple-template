@@ -8,6 +8,6 @@ import cn.penguin.provider.entity.authentic.User;
  * @author Wensy
  * @since 2022/11/24 16:28:00
  */
-public interface IUserService extends IBaseService<User> {
+public interface IUserService extends IBaseService<User, Long> {
 
 }

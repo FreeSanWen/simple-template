@@ -9,7 +9,7 @@ import java.util.List;
  * @author Wensy
  * @since 2022/11/27 17:51:00
  */
-public interface IDictService extends IBaseService<Dict> {
+public interface IDictService extends IBaseService<Dict, Long> {
 
     /**
      * 查询单行记录

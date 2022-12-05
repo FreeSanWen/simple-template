@@ -1,7 +1,7 @@
 package cn.penguin.provider.repository.authentic;
 
+import cn.penguin.common.repository.BaseRepository;
 import cn.penguin.provider.entity.authentic.User;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
  * @since 2022/12/5 13:53
  */
 @Repository
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+public interface UserRepository extends BaseRepository<User, Long> {
 
 }
