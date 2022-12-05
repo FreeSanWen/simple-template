@@ -1,6 +1,8 @@
 package cn.penguin.common.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import java.io.Serializable;
 
@@ -14,11 +16,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class BaseEntity<T> implements Serializable {
 
-    private Long id;
+    @Id
+    public Long id;
 
+    @Transient
     private Integer pageNum;
 
+    @Transient
     private Integer pageSize;
 
-
+    public BaseEntity(Long id) {
+        this.id = id;
+    }
 }

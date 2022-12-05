@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 public class User extends UserEntity {
 
     @Builder(toBuilder = true)
-    public User(String username, String password, String realName, String mobile, Integer isLocked, Integer isEnable, Integer isDelete, LocalDateTime createTime, LocalDateTime updateTime) {
-        super(username, password, realName, mobile, isLocked, isEnable, isDelete, createTime, updateTime);
+    public User(Long id,String username, String password, String realName, String mobile, Integer isLocked, Integer isEnable, Integer isDelete, LocalDateTime createTime, LocalDateTime updateTime) {
+        super(id, username, password, realName, mobile, isLocked, isEnable, isDelete, createTime, updateTime);
     }
 
     public static LoginUser convert(User user){
