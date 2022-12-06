@@ -10,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import java.time.LocalDateTime;
 
 /**
+ * user 实体，保存，删除和简单查询使用jdbc，更新和复杂查询使用mybatis
+ *
  * @author wensy
  * @since 2022-11-27 1:24
  */

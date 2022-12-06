@@ -1,8 +1,11 @@
 package cn.penguin.provider.entity.authentic;
 
 import cn.penguin.common.entity.BaseEntity;
-import lombok.*;
-import org.springframework.data.annotation.Transient;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -45,31 +48,31 @@ public class UserEntity extends BaseEntity {
     /**
      * 1.锁定，0.禁用
      */
-    @Transient
+    @ReadOnlyProperty
     public Integer isLocked;
 
     /**
      * 1.启用，0.禁用
      */
-    @Transient
+    @ReadOnlyProperty
     public Integer isEnable;
 
     /**
      * 1.删除，0.正常
      */
-    @Transient
+    @ReadOnlyProperty
     public Integer isDelete;
 
     /**
      * 创建时间
      */
-    @Transient
+    @ReadOnlyProperty
     public LocalDateTime createTime;
 
     /**
      * 最后更新时间
      */
-    @Transient
+    @ReadOnlyProperty
     public LocalDateTime updateTime;
 
     public UserEntity(Long id, String username, String password, String realName, String mobile, Integer isLocked, Integer isEnable, Integer isDelete, LocalDateTime createTime, LocalDateTime updateTime) {
