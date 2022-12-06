@@ -1,8 +1,9 @@
 package cn.penguin.common.service;
 
 
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,10 +12,10 @@ import java.util.List;
  * @author wensy
  * @since 2022-11-27 17:02:58
  */
-public interface IBaseService<T,ID> {
+public interface IBaseService<T> {
 
     /**
-     * 增加一条记录（非空字段)
+     * 增加一条记录
      *
      * @param record
      * @return
@@ -22,29 +23,12 @@ public interface IBaseService<T,ID> {
     T insert(T record);
 
     /**
-     * ID为空，增加一条记录（所有字段)
-     * ID不为空，更新所有字段
-     *
-     * @param record
-     * @return
-     */
-    T save(T record);
-
-    /**
-     * 批量增加记录
-     *
-     * @param record
-     * @return
-     */
-    Boolean saveAll(List<T> record);
-
-    /**
      * 根据id删除记录
      *
      * @param id
      * @return
      */
-    Boolean deleteById(ID id);
+    Boolean deleteById(Serializable id);
 
     /**
      * 根据id更新一条记录（非空字段）
@@ -60,7 +44,7 @@ public interface IBaseService<T,ID> {
      * @param id
      * @return
      */
-    T selectById(ID id);
+    T selectById(Serializable id);
 
     /**
      * 查询一条记录
@@ -79,18 +63,11 @@ public interface IBaseService<T,ID> {
     List<T> selectList(T query);
 
     /**
-     * 查询多行记录
-     *
-     * @return
-     */
-    List<T> selectList();
-
-    /**
      * 分页查询
      *
      * @param query
      * @return
      */
-    PageInfo<T> selectPage(T query);
+    Page<T> selectPage(T query);
 
 }

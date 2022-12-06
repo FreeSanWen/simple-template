@@ -1,8 +1,13 @@
 package cn.penguin.common.entity;
 
-import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -16,16 +21,23 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class BaseEntity<T> implements Serializable {
 
-    @Id
     public Long id;
 
-    @Transient
+    @TableField(exist = false)
     private Integer pageNum;
 
-    @Transient
+    @TableField(exist = false)
     private Integer pageSize;
 
     public BaseEntity(Long id) {
         this.id = id;
+    }
+
+    public Wrapper<T> wrapper() {
+        return new LambdaQueryWrapper();
+    }
+
+    public Page<T> startPage() {
+        return new Page((long)this.getPageNum(), (long)this.getPageSize());
     }
 }

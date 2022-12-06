@@ -2,29 +2,25 @@ package cn.penguin.common.service.impl;
 
 import cn.penguin.common.entity.BaseEntity;
 import cn.penguin.common.mapper.BaseMapper;
-import cn.penguin.common.repository.BaseRepository;
 import cn.penguin.common.service.IBaseService;
 import cn.penguin.common.utils.IdUtil;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 /**
  * @author wensy
  * @since 2022-11-28 10:15
  */
-public class BaseService<T extends BaseEntity,ID> implements IBaseService<T,ID> {
+public class BaseService<T extends BaseEntity> implements IBaseService<T> {
 
     private final BaseMapper<T> baseMapper;
-    private final BaseRepository<T, ID> baseRepository;
 
-    public BaseService(BaseMapper<T> baseMapper,BaseRepository<T, ID> baseRepository) {
+    public BaseService(BaseMapper<T> baseMapper) {
         this.baseMapper = baseMapper;
-        this.baseRepository = baseRepository;
     }
 
     @Override
@@ -37,19 +33,8 @@ public class BaseService<T extends BaseEntity,ID> implements IBaseService<T,ID> 
     }
 
     @Override
-    public T save(T record) {
-        return baseRepository.save(record);
-    }
-
-    @Override
-    public Boolean saveAll(List<T> records) {
-        baseRepository.saveAll(records);
-        return true;
-    }
-
-    @Override
-    public Boolean deleteById(ID id) {
-        baseRepository.deleteById(id);
+    public Boolean deleteById(Serializable id) {
+        baseMapper.deleteById(id);
         return true;
     }
 
@@ -59,28 +44,26 @@ public class BaseService<T extends BaseEntity,ID> implements IBaseService<T,ID> 
     }
 
     @Override
-    public T selectById(ID id) {
-        return baseRepository.findById(id).orElse(null);
+    public T selectById(Serializable id) {
+        return baseMapper.selectById(id);
     }
 
     @Override
     public T selectOne(T query) {
-        return baseMapper.selectOne(query);
+        Wrapper<T> wrapper = query.wrapper();
+        return baseMapper.selectOne(wrapper);
     }
 
     @Override
     public List<T> selectList(T query) {
-        return baseMapper.selectList(query);
+        Wrapper<T> wrapper = query.wrapper();
+        return baseMapper.selectList(wrapper);
     }
 
     @Override
-    public List<T> selectList() {
-        return StreamSupport.stream(baseRepository.findAll().spliterator(), false).collect(Collectors.toList());
-    }
-
-    @Override
-    public PageInfo<T> selectPage(T query) {
-        PageHelper.startPage(query.getPageNum(),query.getPageSize());
-        return new PageInfo<>(baseMapper.selectList(query));
+    public Page<T> selectPage(T query) {
+        Wrapper<T> wrapper = query.wrapper();
+        Page page = query.startPage();
+        return baseMapper.selectPage(page, wrapper);
     }
 }

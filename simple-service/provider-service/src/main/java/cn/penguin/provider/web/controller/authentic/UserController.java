@@ -7,7 +7,6 @@ import cn.penguin.common.enums.BusinessModuleEnum;
 import cn.penguin.common.enums.BusinessOperationEnum;
 import cn.penguin.common.utils.RedisUtil;
 import cn.penguin.provider.entity.authentic.User;
-import cn.penguin.provider.repository.authentic.UserRepository;
 import cn.penguin.provider.service.authentic.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +24,10 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
     private final IUserService userService;
-    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(IUserService userService, UserRepository userRepository) {
+    public UserController(IUserService userService) {
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("/query")
@@ -49,12 +46,12 @@ public class UserController {
     @RequireParam("#entity.username")
     @BusinessLog(bizId = "#entity.id", module = BusinessModuleEnum.USER_MODULE, type = BusinessOperationEnum.INSERT)
     public User save(@RequestBody User entity, HttpServletRequest request) {
-        return userRepository.save(entity);
+        return userService.insert(entity);
     }
 
-    @PostMapping("/modify")
-    public Boolean modify(@RequestBody User entity) {
-        userRepository.save(entity);
+    @PostMapping("/update")
+    public Boolean update(@RequestBody User entity) {
+        userService.update(entity);
         return true;
     }
 }

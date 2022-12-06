@@ -33,7 +33,7 @@ public class DictController {
 
     @PostMapping("/save")
     public Dict save(@RequestBody Dict entity) {
-        return dictService.save(entity);
+        return dictService.insert(entity);
     }
 
     @PostMapping("/update")

@@ -7,5 +7,5 @@ import cn.penguin.provider.entity.dictionary.DictItem;
  * @author Wensy
  * @since 2022/11/27 17:51:00
  */
-public interface IDictItemService extends IBaseService<DictItem, Long> {
+public interface IDictItemService extends IBaseService<DictItem> {
 }

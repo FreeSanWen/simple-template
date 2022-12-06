@@ -19,6 +19,7 @@
         <spring-cloud.version>2021.0.4</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
 
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <mybatis.version>2.2.2</mybatis.version>
         <pagehelper.version>1.4.5</pagehelper.version>
         <feign-okhttp.version>11.8</feign-okhttp.version>
@@ -74,6 +75,12 @@
                 <groupId>io.github.openfeign</groupId>
                 <artifactId>feign-okhttp</artifactId>
                 <version>${feign-okhttp.version}</version>
+            </dependency>
+            <!-- mybatis-plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <!-- guava -->
             <dependency>

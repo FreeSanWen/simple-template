@@ -8,10 +8,10 @@
         <version>1.0.0</version>
     </parent>
     <groupId>cn.penguin.framework</groupId>
-    <artifactId>common-web</artifactId>
+    <artifactId>common-mybatis</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>common-web</name>
+    <name>common-mybatis</name>
 
     <dependencies>
         <dependency>
@@ -19,14 +19,16 @@
             <artifactId>common-core</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <!-- mybatis-plus -->
         <dependency>
-            <groupId>cn.penguin.framework</groupId>
-            <artifactId>common-mybatis</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+        <!-- mysql -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>
