@@ -23,6 +23,7 @@
         <mybatis.version>2.2.2</mybatis.version>
         <pagehelper.version>1.4.5</pagehelper.version>
         <feign-okhttp.version>11.8</feign-okhttp.version>
+        <activiti.version>7.1.0.M6</activiti.version>
         <guava.version>31.1-jre</guava.version>
     </properties>
 
@@ -81,6 +82,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- activiti -->
+            <dependency>
+                <groupId>org.activiti</groupId>
+                <artifactId>activiti-spring-boot-starter</artifactId>
+                <version>${activiti.version}</version>
             </dependency>
             <!-- guava -->
             <dependency>

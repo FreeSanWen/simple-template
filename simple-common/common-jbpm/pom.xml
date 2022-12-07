@@ -8,10 +8,13 @@
         <version>1.0.0</version>
     </parent>
     <groupId>cn.penguin.framework</groupId>
-    <artifactId>common-web</artifactId>
+    <artifactId>common-jbpm</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>common-web</name>
+    <name>common-jbpm</name>
+    <description>
+        java 业务流程管理
+    </description>
 
     <dependencies>
         <dependency>
@@ -25,13 +28,18 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>cn.penguin.framework</groupId>
-            <artifactId>common-jbpm</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>mybatis</artifactId>
+                    <groupId>org.mybatis</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>
