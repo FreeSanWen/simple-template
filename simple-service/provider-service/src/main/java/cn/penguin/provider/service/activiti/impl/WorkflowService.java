@@ -77,8 +77,10 @@ public class WorkflowService implements IWorkflowService {
     public Boolean complete(String id, String key) {
         //对应各流程节点流转下一步人名称，这里第一步从worker开始，分别为worker-->leader-->finance
         Task task = taskService.createTaskQuery().processDefinitionKey(key).taskAssignee(id).singleResult();
+        Map map = new HashMap();
+        map.put("status",0);
         //完成任务，参数：任务id
-        taskService.complete(task.getId());
+        taskService.complete(task.getId(), map);
         return true;
     }
 }
