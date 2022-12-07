@@ -24,7 +24,7 @@ import java.util.List;
 @Component
 public class HttpRequestAspect {
 
-    @Pointcut("execution(* cn.penguin.*.web.controller..*.*(..)) || execution(* cn.penguin.*.web.feign..*.*(..)) ")
+    @Pointcut("execution(* cn.penguin.*.web.controller..*.*(..)) || execution(* cn.penguin.*.web.feign..*.*(..))")
     public void webLog() {
     }
 

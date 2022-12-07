@@ -8,6 +8,7 @@ import cn.penguin.common.enums.BusinessOperationEnum;
 import cn.penguin.common.utils.RedisUtil;
 import cn.penguin.provider.entity.authentic.User;
 import cn.penguin.provider.service.authentic.IUserService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,12 @@ public class UserController {
     public List<User> list(User query){
         //优化后
         return RedisUtil.lock(RedisConstant.USER_LOCK, s -> userService.selectList(s), query);
+    }
+
+    @GetMapping("/page")
+    @RequireParam({"#query.pageNum","#query.pageSize"})
+    public Page<User> page(User query){
+        return userService.selectPage(query);
     }
 
     @PostMapping("/save")

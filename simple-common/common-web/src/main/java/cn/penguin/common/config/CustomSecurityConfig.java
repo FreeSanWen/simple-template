@@ -35,7 +35,7 @@ public class CustomSecurityConfig {
     @Resource
     private CustomSecurityFilter customSecurityFilter;
 
-    @Value("${pms.security.ignoring-path:/doLogin,/}")
+    @Value("${project.security.ignoring-path:/doLogin,/}")
     private String[] ignoringPath;
 
     @Bean
