@@ -8,10 +8,10 @@
         <version>1.0.0</version>
     </parent>
     <groupId>cn.penguin.framework</groupId>
-    <artifactId>common-jbpm</artifactId>
+    <artifactId>common-flow</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>common-jbpm</name>
+    <name>common-flow</name>
     <description>
         java 业务流程管理
     </description>
