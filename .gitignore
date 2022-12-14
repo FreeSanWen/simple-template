@@ -1,5 +1,3 @@
 # Project exclude paths
-/simple-common/common-core/target/
-/simple-common/common-web/target/
-/simple-service/provider-service/target/
-/simple-starter/provider-starter/target/
+/.idea
+/**/**/target
