@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>cn.penguin.framework</groupId>
+        <groupId>cn.framework.penguin</groupId>
         <artifactId>simple-template</artifactId>
         <version>1.0.0</version>
     </parent>
-    <groupId>cn.penguin.framework</groupId>
+    <groupId>cn.framework.penguin</groupId>
     <artifactId>simple-starter</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
@@ -20,5 +20,6 @@
         <module>consumer-starter</module>
         <module>gateway-starter</module>
         <module>provider-starter</module>
+        <module>workflow-starter</module>
     </modules>
 </project>

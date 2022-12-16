@@ -1,7 +1,7 @@
 package cn.penguin.provider.entity.authentic;
 
-import cn.penguin.common.entity.LoginUser;
-import cn.penguin.common.utils.ObjectUtil;
+import cn.penguin.common.core.utils.ObjectUtil;
+import cn.penguin.common.security.entity.LoginUser;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -34,7 +34,8 @@ public class User extends UserEntity {
         return loginUser;
     }
 
-    public Wrapper wrapper() {
+    @Override
+    public Wrapper<User> wrapper() {
         LambdaQueryWrapper<User> lambdaQueryWrapper = new LambdaQueryWrapper();
         if (ObjectUtil.isNotEmpty(this.getUsername())) {
             lambdaQueryWrapper.eq(User::getUsername, this.getUsername());

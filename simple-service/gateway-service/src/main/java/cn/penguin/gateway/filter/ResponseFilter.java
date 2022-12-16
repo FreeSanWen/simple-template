@@ -1,6 +1,6 @@
 package cn.penguin.gateway.filter;
 
-import cn.penguin.common.constant.LogbackConstant;
+import cn.penguin.common.core.constant.LogbackConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Publisher;
 import org.slf4j.MDC;

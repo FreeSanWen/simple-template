@@ -1,7 +1,7 @@
 package cn.penguin.provider.service.authentic;
 
 
-import cn.penguin.common.service.IBaseService;
+import cn.penguin.common.mybatis.service.IBaseService;
 import cn.penguin.provider.entity.authentic.User;
 
 /**

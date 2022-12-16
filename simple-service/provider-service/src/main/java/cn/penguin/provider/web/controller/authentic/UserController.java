@@ -1,11 +1,11 @@
 package cn.penguin.provider.web.controller.authentic;
 
-import cn.penguin.common.annotation.BusinessLog;
-import cn.penguin.common.annotation.RequireParam;
-import cn.penguin.common.constant.RedisConstant;
-import cn.penguin.common.enums.BusinessModuleEnum;
-import cn.penguin.common.enums.BusinessOperationEnum;
-import cn.penguin.common.utils.RedisUtil;
+import cn.penguin.common.core.constant.RedisConstant;
+import cn.penguin.common.redis.utils.RedisUtil;
+import cn.penguin.common.web.annotation.BusinessLog;
+import cn.penguin.common.web.annotation.RequireParam;
+import cn.penguin.common.web.enums.BusinessModuleEnum;
+import cn.penguin.common.web.enums.BusinessOperationEnum;
 import cn.penguin.provider.entity.authentic.User;
 import cn.penguin.provider.service.authentic.IUserService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

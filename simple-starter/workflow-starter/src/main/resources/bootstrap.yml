@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: workflow-service
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 121.40.151.216:8848
+        file-extension: yaml
+        namespace: 1797ecd2-3ea7-44e1-b1d8-3115e6f8e8c4
+        extension-configs:
+          - data-id: provider-service-dev.properties
+            refresh: true
+      discovery:
+        server-addr: 121.40.151.216:8848
+        namespace: 1797ecd2-3ea7-44e1-b1d8-3115e6f8e8c4
+rocketmq:
+  name-server: 121.40.151.216:9876
+  producer:
+    group: myGroup

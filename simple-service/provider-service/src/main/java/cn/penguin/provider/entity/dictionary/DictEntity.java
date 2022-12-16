@@ -1,6 +1,6 @@
 package cn.penguin.provider.entity.dictionary;
 
-import cn.penguin.common.entity.BaseEntity;
+import cn.penguin.common.mybatis.entity.BaseEntity;
 import lombok.Data;
 
 import java.time.LocalDateTime;

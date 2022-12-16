@@ -1,7 +1,7 @@
 package cn.penguin.gateway.filter;
 
-import cn.penguin.common.constant.LogbackConstant;
-import cn.penguin.common.utils.IdUtil;
+import cn.penguin.common.core.constant.LogbackConstant;
+import cn.penguin.common.core.utils.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;

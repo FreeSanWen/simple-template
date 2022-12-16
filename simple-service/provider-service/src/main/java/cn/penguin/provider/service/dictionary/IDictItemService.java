@@ -1,6 +1,6 @@
 package cn.penguin.provider.service.dictionary;
 
-import cn.penguin.common.service.IBaseService;
+import cn.penguin.common.mybatis.service.IBaseService;
 import cn.penguin.provider.entity.dictionary.DictItem;
 
 /**

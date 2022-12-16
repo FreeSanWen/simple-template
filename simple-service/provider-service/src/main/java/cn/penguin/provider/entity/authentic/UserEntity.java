@@ -1,6 +1,6 @@
 package cn.penguin.provider.entity.authentic;
 
-import cn.penguin.common.entity.BaseEntity;
+import cn.penguin.common.mybatis.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

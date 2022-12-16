@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>cn.penguin.framework</groupId>
+        <groupId>cn.framework.penguin</groupId>
         <artifactId>simple-common</artifactId>
         <version>1.0.0</version>
     </parent>
-    <groupId>cn.penguin.framework</groupId>
+    <groupId>cn.framework.penguin</groupId>
     <artifactId>common-mybatis</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -15,20 +15,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.penguin.framework</groupId>
+            <groupId>cn.framework.penguin</groupId>
             <artifactId>common-core</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <!-- mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-        </dependency>
-        <!-- mysql -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>

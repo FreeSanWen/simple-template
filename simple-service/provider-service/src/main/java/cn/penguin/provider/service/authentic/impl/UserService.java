@@ -1,6 +1,6 @@
 package cn.penguin.provider.service.authentic.impl;
 
-import cn.penguin.common.service.impl.BaseService;
+import cn.penguin.common.mybatis.service.impl.BaseService;
 import cn.penguin.provider.entity.authentic.User;
 import cn.penguin.provider.mapper.authentic.UserMapper;
 import cn.penguin.provider.service.authentic.IUserService;

@@ -1,6 +1,6 @@
 package cn.penguin.provider.service.authentic;
 
-import cn.penguin.common.entity.LoginUser;
+import cn.penguin.common.security.entity.LoginUser;
 
 /**
  * @author wensy

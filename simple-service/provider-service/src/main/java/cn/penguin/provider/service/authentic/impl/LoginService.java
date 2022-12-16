@@ -1,8 +1,8 @@
 package cn.penguin.provider.service.authentic.impl;
 
-import cn.penguin.common.entity.LoginUser;
-import cn.penguin.common.exception.BizException;
-import cn.penguin.common.utils.SecurityUtil;
+import cn.penguin.common.core.exception.BizException;
+import cn.penguin.common.security.entity.LoginUser;
+import cn.penguin.common.security.utils.SecurityUtil;
 import cn.penguin.provider.service.authentic.ILoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

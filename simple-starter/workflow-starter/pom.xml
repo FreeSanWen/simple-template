@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.framework.penguin</groupId>
+        <artifactId>simple-starter</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    <groupId>cn.framework.penguin</groupId>
+    <artifactId>workflow-starter</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>workflow-starter</name>
+    <description>
+        workflow starter
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.framework.penguin</groupId>
+            <artifactId>workflow-service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>workflow-service-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <mainClass>cn.penguin.WorkflowApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

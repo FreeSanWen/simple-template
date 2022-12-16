@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>cn.penguin.framework</groupId>
+        <groupId>cn.framework.penguin</groupId>
         <artifactId>simple-common</artifactId>
         <version>1.0.0</version>
     </parent>
-    <groupId>cn.penguin.framework</groupId>
+    <groupId>cn.framework.penguin</groupId>
     <artifactId>common-web</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -15,23 +15,57 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.penguin.framework</groupId>
-            <artifactId>common-core</artifactId>
-            <version>1.0.0</version>
+            <groupId>cn.framework.penguin</groupId>
+            <artifactId>common-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>cn.penguin.framework</groupId>
+            <groupId>cn.framework.penguin</groupId>
             <artifactId>common-mybatis</artifactId>
-            <version>1.0.0</version>
         </dependency>
+        <!-- nacos config -->
         <dependency>
-            <groupId>cn.penguin.framework</groupId>
-            <artifactId>common-flow</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+        <!-- nacos discovery -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!-- bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <!-- loadbalancer -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+        <!-- circuitbreaker -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+        </dependency>
+        <!-- open feign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!-- okhttp -->
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
         </dependency>
     </dependencies>
 </project>
