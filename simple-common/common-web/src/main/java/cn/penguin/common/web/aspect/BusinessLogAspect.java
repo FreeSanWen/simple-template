@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 /**
  * @author wensy
@@ -111,8 +112,10 @@ public class BusinessLogAspect {
         logRecord.setOperationType(type.getCode());
         logRecord.setParams(argsTemp);
         logRecord.setRelationId(value);
-        logRecord.setCreatorId(user.getId());
-        logRecord.setCreatorName(user.getRealName());
+        if (Objects.nonNull(user)) {
+            logRecord.setCreatorId(user.getId());
+            logRecord.setCreatorName(user.getRealName());
+        }
         // 持久化日志
         logService.saveLog(logRecord);
     }

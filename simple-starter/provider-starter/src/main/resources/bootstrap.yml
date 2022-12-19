@@ -21,6 +21,3 @@ rocketmq:
     group: myGroup
 server:
   port: 9000
-mybatis-plus:
-  global-config:
-    banner: false

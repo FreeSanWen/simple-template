@@ -9,8 +9,8 @@
         <result property="operationType" column="operation_type" jdbcType="INTEGER"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="isSuccess" column="is_success" jdbcType="INTEGER"/>
-        <result property="params" column="params" typeHandler="cn.penguin.common.handler.JsonTypeHandler"/>
-        <result property="result" column="result" typeHandler="cn.penguin.common.handler.JsonTypeHandler"/>
+        <result property="params" column="params" typeHandler="cn.penguin.common.mybatis.handler.JsonTypeHandler"/>
+        <result property="result" column="result" typeHandler="cn.penguin.common.mybatis.handler.JsonTypeHandler"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="creatorId" column="creator_id" jdbcType="INTEGER"/>
         <result property="creatorName" column="creator_name" jdbcType="VARCHAR"/>
@@ -21,8 +21,8 @@
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into sys_log_record(id, relation_id, module, operation_type, description, is_success, params, result,creator_id,creator_name)
         values (#{id}, #{relationId}, #{module}, #{operationType}, #{description}, #{isSuccess},
-            #{params,typeHandler=cn.penguin.common.handler.JsonTypeHandler},
-                #{result,typeHandler=cn.penguin.common.handler.JsonTypeHandler},#{creatorId},#{creatorName})
+            #{params,typeHandler=cn.penguin.common.mybatis.handler.JsonTypeHandler},
+                #{result,typeHandler=cn.penguin.common.mybatis.handler.JsonTypeHandler},#{creatorId},#{creatorName})
     </insert>
 
     <select id="selectList" resultMap="UserMap">

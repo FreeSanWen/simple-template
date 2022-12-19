@@ -8,6 +8,7 @@ import cn.penguin.common.core.utils.ObjectUtil;
 import cn.penguin.common.redis.utils.RedisUtil;
 import cn.penguin.common.security.entity.LoginUser;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -129,7 +130,11 @@ public class SecurityUtil {
     }
 
     public static LoginUser getUser() {
-        return (LoginUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (Objects.isNull(authentication)) {
+            return null;
+        }
+        return (LoginUser) authentication.getPrincipal();
     }
 
     public static String getToken() {

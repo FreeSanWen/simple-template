@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Objects;
+import java.util.function.ToDoubleBiFunction;
 
 /**
  * @author Wensy
@@ -14,22 +16,23 @@ import javax.annotation.PostConstruct;
 @Component
 public class IdUtil {
 
-    @Value("${project.worker-id:1}")
-    private int workerId;
+    @Value("${project.worker-id:}")
+    private Integer workerId;
 
-    @Value("${project.data-center-id:1}")
-    private int dataCenterId;
+    @Value("${project.data-center-id:}")
+    private Integer dataCenterId;
 
-    private static int wId;
-    private static int dId;
+    private static SnowFlakeId snowFlakeId;
 
     @PostConstruct
     public void set(){
-        wId = this.workerId;
-        dId = this.dataCenterId;
+        // TODO: 2022/12/19 这里应该利用机器的 ip 或者其他唯一标识来做一定运算自动获得两个数据
+        if (Objects.isNull(workerId)) {
+            snowFlakeId = new SnowFlakeId();
+        }else{
+            snowFlakeId = new SnowFlakeId(workerId, dataCenterId);
+        }
     }
-
-    private static SnowFlakeId snowFlakeId = new SnowFlakeId();
 
     public static Long nextId(){
         return snowFlakeId.nextId();
