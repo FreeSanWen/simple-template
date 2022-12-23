@@ -20,7 +20,7 @@ public @interface BusinessLog {
 
     /**
      * 关联的业务id，这里用SpEL表达式来取值，参考  bizId = "#entity.id"
-     * entity指参数的名字，如果是新增的话，会取出参，其他情况取入参
+     * entity指参数的名字，
      *
      * @return
      */

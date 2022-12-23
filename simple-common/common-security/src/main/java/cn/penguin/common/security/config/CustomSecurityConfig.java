@@ -1,6 +1,7 @@
 package cn.penguin.common.security.config;
 
 import cn.penguin.common.security.filter.CustomSecurityFilter;
+import cn.penguin.common.security.handler.CustomAccessDeniedHandler;
 import cn.penguin.common.security.handler.CustomLoginFailedHandler;
 import cn.penguin.common.security.handler.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,6 +30,8 @@ public class CustomSecurityConfig {
     @Resource
     private AuthenticationConfiguration authenticationConfiguration;
     @Resource
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+    @Resource
     private CustomLoginFailedHandler customLoginFailedHandler;
     @Resource
     private CustomLogoutSuccessHandler customLogoutSuccessHandler;
@@ -50,7 +53,9 @@ public class CustomSecurityConfig {
         http.cors().and()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .exceptionHandling().authenticationEntryPoint(customLoginFailedHandler).and()
+                // 要想启用customAccessDeniedHandler 得同时
+                .exceptionHandling().authenticationEntryPoint(customLoginFailedHandler)
+                .accessDeniedHandler(customAccessDeniedHandler).and()
                 .authorizeRequests().anyRequest().authenticated().and()
                 .headers().frameOptions().disable().and()
                 .logout().logoutSuccessHandler(customLogoutSuccessHandler);

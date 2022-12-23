@@ -64,6 +64,12 @@ public class LoginUser implements UserDetails, Serializable {
      * token
      */
     private String token;
+
+    /**
+     * LoginEnum
+     */
+    private Integer checkType;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

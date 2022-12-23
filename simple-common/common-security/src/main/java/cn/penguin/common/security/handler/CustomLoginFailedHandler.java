@@ -14,6 +14,8 @@ import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * 解决匿名用户访问无权限资源时的异常
+ *
  * @author wensy
  * @since 2022/12/1 10:39
  */
@@ -27,6 +29,6 @@ public class CustomLoginFailedHandler implements AuthenticationEntryPoint, Seria
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-        response.getWriter().write(JsonUtil.toString(Reply.no(HttpEnum.TOKEN_EXPIRED)));
+        response.getWriter().write(JsonUtil.toString(Reply.no(HttpEnum.FAIL)));
     }
 }

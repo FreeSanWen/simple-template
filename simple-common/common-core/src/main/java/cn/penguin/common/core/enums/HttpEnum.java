@@ -12,7 +12,13 @@ public enum HttpEnum {
 
     FAIL(500, "Internal Server Error"),
 
-    TOKEN_EXPIRED(403, "Token invalid");
+    TOKEN_EXPIRED(403, "Token invalid"),
+
+    LOGIN_DENIED(401, "用户名或者密码错误")
+
+
+
+    ;
 
     @Getter
     private Integer code;

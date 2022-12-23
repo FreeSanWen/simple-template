@@ -3,6 +3,8 @@ package cn.penguin.provider.service.authentic.impl;
 import cn.penguin.common.core.exception.BizException;
 import cn.penguin.common.security.entity.LoginUser;
 import cn.penguin.common.security.utils.SecurityUtil;
+import cn.penguin.provider.common.context.LoginContext;
+import cn.penguin.provider.common.enums.LoginEnum;
 import cn.penguin.provider.service.authentic.ILoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +32,8 @@ public class LoginService implements ILoginService {
 
     @Override
     public String doLogin(LoginUser user) {
-        //封装校验对象
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword());
-        //使用Manager调用 SysUserDetailService
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
-        //认证失败，内容为空
-        if (Objects.isNull(authentication)){
-            throw new BizException("登录失败");
-        }
-        LoginUser loginUser = (LoginUser) authentication.getPrincipal();
+        //调用登录校验策略
+        LoginUser loginUser = LoginContext.getInstance(user.getCheckType()).check(user, authenticationManager);
         return SecurityUtil.createToken(loginUser);
     }
 
