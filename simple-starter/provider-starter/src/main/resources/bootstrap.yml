@@ -15,6 +15,8 @@ spring:
       discovery:
         server-addr: 121.40.151.216:8848
         namespace: 1797ecd2-3ea7-44e1-b1d8-3115e6f8e8c4
+  liquibase:
+    change-log: classpath:changelog/changelog-master.xml
 rocketmq:
   name-server: 121.40.151.216:9876
   producer:

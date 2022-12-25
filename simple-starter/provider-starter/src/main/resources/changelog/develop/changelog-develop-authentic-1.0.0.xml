@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="develop-authentic-100-001" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sys_user"></tableExists>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `sys_user`
+            (
+                `id`           bigint      NOT NULL COMMENT '主键',
+                `username`     varchar(32) NOT NULL COMMENT '账号',
+                `password`     varchar(60) NOT NULL COMMENT '密码',
+                `real_name`    varchar(32) NOT NULL COMMENT '真实姓名',
+                `mobile`       char(11)    NOT NULL COMMENT '手机号码',
+                `id_number`    varchar(18)          DEFAULT NULL COMMENT '证件号码',
+                `is_locked`    tinyint     NOT NULL DEFAULT '0' COMMENT '1.锁定，0.正常',
+                `is_enable`    tinyint     NOT NULL DEFAULT '1' COMMENT '1.启用，0.禁用',
+                `is_delete`    tinyint     NOT NULL DEFAULT '0' COMMENT '1.删除，0.正常',
+                `create_time`  timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建日期',
+                `creator_id`   bigint               DEFAULT NULL COMMENT '创建人id',
+                `creator_name` varchar(32)          DEFAULT NULL COMMENT '创建人姓名',
+                `update_time`  timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新日期',
+                `update_id`    bigint               DEFAULT NULL COMMENT '更新人id',
+                `update_name`  varchar(32)          DEFAULT NULL COMMENT '更新人姓名',
+                PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB COMMENT='用户信息表';
+        </sql>
+    </changeSet>
+
+    <changeSet id="develop-authentic-100-002" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from sys_user where id = '1469301104255832064';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO `sys_user` (`id`, `username`, `password`, `real_name`, `mobile`, `id_number`) VALUES (1469301104255832064, 'admin', '$2a$10$FaMml2HJ.2ev.id3w.v9TOq8nePT.yOsBeq5quPqDOlnYEFdKjiBu', '系统管理员', '12345678900', '330326199909091234');
+        </sql>
+    </changeSet>
+
+    <changeSet id="develop-authentic-100-003" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sys_role"></tableExists>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `sys_role`
+            (
+                `id`          bigint      NOT NULL COMMENT '主键',
+                `role_code`   varchar(15) DEFAULT NULL COMMENT '角色代码',
+                `role_name`   varchar(15) NOT NULL COMMENT '角色名称',
+                `is_enable`   tinyint     DEFAULT '1' COMMENT '1.启用，0.禁用',
+                `is_delete`   tinyint     DEFAULT '0' COMMENT '1.删除，0.正常',
+                `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB COMMENT='角色信息表';
+        </sql>
+    </changeSet>
+
+    <changeSet id="develop-authentic-100-004" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from sys_role where id = '1469301104255832064';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO `sys_role` (`id`, `role_code`, `role_name`) VALUES (1469301104255832064, 'super_manage', '超级管理员');
+            INSERT INTO `sys_role` (`id`, `role_code`, `role_name`) VALUES (1469301104255832065, 'senior_manage', '高级管理员');
+            INSERT INTO `sys_role` (`id`, `role_code`, `role_name`) VALUES (1469301104255832066, 'normal_manage', '普通管理员');
+            INSERT INTO `sys_role` (`id`, `role_code`, `role_name`) VALUES (1469301104255832067, 'normal_user', '普通用户');
+        </sql>
+    </changeSet>
+
+    <changeSet id="develop-authentic-100-005" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sys_identity"></tableExists>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `sys_identity`
+            (
+                `id`          bigint  NOT NULL COMMENT '主键',
+                `user_id`     bigint  NOT NULL COMMENT '用户主键',
+                `role_id`     bigint  NOT NULL COMMENT '角色主键',
+                `is_used`     tinyint NOT NULL DEFAULT '0' COMMENT '1.目前使用的角色，0.未使用角色',
+                `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB  COMMENT='用户-角色关联信息表';
+        </sql>
+    </changeSet>
+
+    <changeSet id="develop-authentic-100-006" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from sys_identity where id = '1469301104255832064';
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO `sys_identity` (`id`, `user_id`, `role_id`, `is_used`) VALUES (1469301104255832064, 1469301104255832064, 1469301104255832064, 1);
+            INSERT INTO `sys_identity` (`id`, `user_id`, `role_id`, `is_used`) VALUES (1469301104255832065, 1469301104255832064, 1469301104255832065, 0);
+            INSERT INTO `sys_identity` (`id`, `user_id`, `role_id`, `is_used`) VALUES (1469301104255832066, 1469301104255832064, 1469301104255832066, 0);
+            INSERT INTO `sys_identity` (`id`, `user_id`, `role_id`, `is_used`) VALUES (1469301104255832067, 1469301104255832064, 1469301104255832067, 0);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
