@@ -36,7 +36,7 @@
     <changeSet id="develop-authentic-100-002" author="wensy">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from sys_user where id = '1469301104255832064';
+                select count(*) from sys_user where id = 1469301104255832064;
             </sqlCheck>
         </preConditions>
         <sql>
@@ -67,7 +67,7 @@
     <changeSet id="develop-authentic-100-004" author="wensy">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from sys_role where id = '1469301104255832064';
+                select count(*) from sys_role where id = 1469301104255832064;
             </sqlCheck>
         </preConditions>
         <sql>
@@ -100,7 +100,7 @@
     <changeSet id="develop-authentic-100-006" author="wensy">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">
-                select count(*) from sys_identity where id = '1469301104255832064';
+                select count(*) from sys_identity where id = 1469301104255832064;
             </sqlCheck>
         </preConditions>
         <sql>
@@ -110,5 +110,6 @@
             INSERT INTO `sys_identity` (`id`, `user_id`, `role_id`, `is_used`) VALUES (1469301104255832067, 1469301104255832064, 1469301104255832067, 0);
         </sql>
     </changeSet>
+
 
 </databaseChangeLog>
