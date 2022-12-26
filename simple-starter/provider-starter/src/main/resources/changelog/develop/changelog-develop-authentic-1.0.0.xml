@@ -10,7 +10,7 @@
                 <tableExists tableName="sys_user"></tableExists>
             </not>
         </preConditions>
-        <sql>
+        <sql dbms="mysql">
             CREATE TABLE `sys_user`
             (
                 `id`           bigint      NOT NULL COMMENT '主键',
@@ -111,5 +111,82 @@
         </sql>
     </changeSet>
 
+    <changeSet id="develop-authentic-100-007" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sys_resources"></tableExists>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `sys_resources`
+            (
+                `id`             bigint NOT NULL,
+                `resources_name` varchar(50) DEFAULT NULL COMMENT '资源名称',
+                `path`           varchar(50) DEFAULT NULL COMMENT '资源路径',
+                `type`           tinyint     DEFAULT NULL COMMENT '1.菜单，2.接口',
+                `parent_id`      bigint      DEFAULT '0' COMMENT '上级ID',
+                `module`         smallint    DEFAULT NULL COMMENT '模块类型，参考SystemModuleEnum',
+                `create_time`    timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB  COMMENT='资源信息表';
+        </sql>
+    </changeSet>
 
+    <changeSet id="develop-authentic-100-008" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from sys_resources where id = 1469301104255832064;
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`,`module`)
+            VALUES (1469301104255832064, '系统管理', NULL, 1, 0, 10);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`,`module`)
+            VALUES (1469301104255832065, '权限管理', NULL, 1, 1469301104255832064, 1010);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`,`module`)
+            VALUES (1469301104255832066, '用户管理', '/user', 1, 1469301104255832065, 10101);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`,`module`)
+            VALUES (1469301104255832067, '角色管理', '/role', 1, 1469301104255832065, 10102);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`,`module`)
+            VALUES (1469301104255832068, '菜单管理', '/menu', 1, 1469301104255832065, 10103);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`,`module`)
+            VALUES (1469301104255832069, '接口管理', '/interface', 1, 1469301104255832065, 10104);
+
+        </sql>
+    </changeSet>
+
+    <changeSet id="develop-authentic-100-009" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="sys_permission"></tableExists>
+            </not>
+        </preConditions>
+        <sql>
+            CREATE TABLE `sys_permission`
+            (
+                `id`           bigint NOT NULL,
+                `role_id`      bigint NOT NULL COMMENT '角色id',
+                `resources_id` bigint NOT NULL COMMENT '资源id',
+                `create_time`  timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB COMMENT='角色-资源关联信息表';
+        </sql>
+    </changeSet>
+
+    <changeSet id="develop-authentic-100-010" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from sys_permission where id = 1469301104255832064;
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832064, 1469301104255832064, 1469301104255832064);
+            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832065, 1469301104255832064, 1469301104255832065);
+            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832066, 1469301104255832064, 1469301104255832066);
+            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832067, 1469301104255832064, 1469301104255832067);
+            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832068, 1469301104255832064, 1469301104255832068);
+            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832069, 1469301104255832064, 1469301104255832069);
+
+        </sql>
+    </changeSet>
 </databaseChangeLog>
