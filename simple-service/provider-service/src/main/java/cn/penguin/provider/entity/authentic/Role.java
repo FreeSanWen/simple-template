@@ -7,20 +7,23 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 /**
+ * 角色信息表
+ *
  * @author wensy
- * @since 2022/12/27 9:47
+ * @since 2022/12/27 9:36
  */
 @Getter
 @Setter
 @NoArgsConstructor
-@TableName("sys_resources")
-public class Resources extends ResourcesEntity{
-
+@TableName("sys_role")
+public class Role extends RoleEntity{
 
     @Builder(toBuilder = true)
-    public Resources(Long id,String resourcesName, String path, Integer type, Long parentId, Integer module) {
-        super(id, resourcesName, path, type, parentId, module);
+    public Role(Long id,String roleCode, String roleName, Integer isEnable, Integer isDelete, LocalDateTime createTime) {
+        super(id, roleCode, roleName, isEnable, isDelete, createTime);
     }
 
     @Override

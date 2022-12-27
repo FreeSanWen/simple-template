@@ -57,10 +57,6 @@ public class UserEntity extends BaseEntity {
      */
     public Integer isDelete;
 
-    /**
-     * 创建时间
-     */
-    public LocalDateTime createTime;
 
     /**
      * 最后更新时间

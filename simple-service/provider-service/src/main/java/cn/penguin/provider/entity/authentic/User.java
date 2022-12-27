@@ -14,6 +14,8 @@ import org.springframework.beans.BeanUtils;
 import java.time.LocalDateTime;
 
 /**
+ * 用户信息表
+ *
  * @author wensy
  * @since 2022-11-27 1:24
  */

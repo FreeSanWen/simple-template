@@ -9,18 +9,17 @@ import lombok.Setter;
 
 /**
  * @author wensy
- * @since 2022/12/27 9:47
+ * @since 2022/12/27 9:50
  */
 @Getter
 @Setter
 @NoArgsConstructor
-@TableName("sys_resources")
-public class Resources extends ResourcesEntity{
-
+@TableName("sys_permission")
+public class Permission extends PermissionEntity{
 
     @Builder(toBuilder = true)
-    public Resources(Long id,String resourcesName, String path, Integer type, Long parentId, Integer module) {
-        super(id, resourcesName, path, type, parentId, module);
+    public Permission(Long id,Long roleId, Long resourcesId) {
+        super(id, roleId, resourcesId);
     }
 
     @Override

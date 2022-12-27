@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @author wensy
@@ -22,6 +23,8 @@ import java.io.Serializable;
 public class BaseEntity<T> implements Serializable {
 
     public Long id;
+
+    public LocalDateTime createTime;
 
     @TableField(exist = false)
     private Long pageNum;

@@ -70,6 +70,10 @@ public class LoginUser implements UserDetails, Serializable {
      */
     private Integer checkType;
 
+    private String roleId;
+
+    private String roleName;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
