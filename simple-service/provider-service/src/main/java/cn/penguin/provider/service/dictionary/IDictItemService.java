@@ -1,7 +1,7 @@
 package cn.penguin.provider.service.dictionary;
 
 import cn.penguin.common.mybatis.service.IBaseService;
-import cn.penguin.provider.entity.dictionary.DictItem;
+import cn.penguin.provider.domain.dto.dictionary.DictItem;
 
 /**
  * @author Wensy

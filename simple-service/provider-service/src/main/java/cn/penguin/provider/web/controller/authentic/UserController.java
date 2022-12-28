@@ -6,7 +6,7 @@ import cn.penguin.common.web.annotation.BusinessLog;
 import cn.penguin.common.web.annotation.RequireParam;
 import cn.penguin.common.web.enums.BusinessModuleEnum;
 import cn.penguin.common.web.enums.BusinessOperationEnum;
-import cn.penguin.provider.entity.authentic.User;
+import cn.penguin.provider.domain.dto.authentic.User;
 import cn.penguin.provider.service.authentic.IUserService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;

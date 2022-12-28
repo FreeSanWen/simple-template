@@ -2,7 +2,7 @@ package cn.penguin.provider.service.authentic;
 
 
 import cn.penguin.common.mybatis.service.IBaseService;
-import cn.penguin.provider.entity.authentic.User;
+import cn.penguin.provider.domain.dto.authentic.User;
 
 /**
  * @author Wensy

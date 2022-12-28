@@ -2,7 +2,7 @@ package cn.penguin.provider.mapper.dictionary;
 
 
 import cn.penguin.common.mybatis.mapper.GenericMapper;
-import cn.penguin.provider.entity.dictionary.Dict;
+import cn.penguin.provider.domain.dto.dictionary.Dict;
 import org.apache.ibatis.annotations.Mapper;
 
 

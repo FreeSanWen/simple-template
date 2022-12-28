@@ -2,7 +2,7 @@ package cn.penguin.provider.mapper.authentic;
 
 
 import cn.penguin.common.mybatis.mapper.GenericMapper;
-import cn.penguin.provider.entity.authentic.User;
+import cn.penguin.provider.domain.dto.authentic.User;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

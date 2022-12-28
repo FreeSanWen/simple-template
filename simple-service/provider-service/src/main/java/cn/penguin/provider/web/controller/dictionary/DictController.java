@@ -1,6 +1,6 @@
 package cn.penguin.provider.web.controller.dictionary;
 
-import cn.penguin.provider.entity.dictionary.Dict;
+import cn.penguin.provider.domain.dto.dictionary.Dict;
 import cn.penguin.provider.service.dictionary.IDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

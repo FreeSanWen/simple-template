@@ -1,4 +1,4 @@
-package cn.penguin.provider.entity.authentic;
+package cn.penguin.provider.domain.entity.authentic;
 
 import cn.penguin.common.mybatis.entity.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -10,26 +10,22 @@ import java.time.LocalDateTime;
 
 /**
  * @author wensy
- * @since 2022/12/27 9:40
+ * @since 2022/12/27 9:49
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class IdentityEntity extends BaseEntity {
+public class PermissionEntity extends BaseEntity {
     private static final long serialVersionUID = 1L;
-
-    private Long userId;
 
     private Long roleId;
 
-    private Integer isUsed;
+    private Long resourcesId;
 
-    public IdentityEntity(Long id,  Long userId, Long roleId, Integer isUsed, LocalDateTime createTime) {
+    public PermissionEntity(Long id,  Long roleId, Long resourcesId) {
         super(id);
-        this.userId = userId;
         this.roleId = roleId;
-        this.isUsed = isUsed;
-        this.createTime = createTime;
+        this.resourcesId = resourcesId;
     }
 }

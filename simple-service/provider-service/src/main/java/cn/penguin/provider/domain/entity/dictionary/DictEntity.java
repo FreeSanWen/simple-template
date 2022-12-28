@@ -1,4 +1,4 @@
-package cn.penguin.provider.entity.dictionary;
+package cn.penguin.provider.domain.entity.dictionary;
 
 import cn.penguin.common.mybatis.entity.BaseEntity;
 import lombok.Data;

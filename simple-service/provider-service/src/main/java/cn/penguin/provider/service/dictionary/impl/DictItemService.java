@@ -1,7 +1,7 @@
 package cn.penguin.provider.service.dictionary.impl;
 
 import cn.penguin.common.mybatis.service.impl.BaseService;
-import cn.penguin.provider.entity.dictionary.DictItem;
+import cn.penguin.provider.domain.dto.dictionary.DictItem;
 import cn.penguin.provider.mapper.dictionary.DictItemMapper;
 import cn.penguin.provider.service.dictionary.IDictItemService;
 import org.springframework.beans.factory.annotation.Autowired;

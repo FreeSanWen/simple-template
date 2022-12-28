@@ -1,6 +1,6 @@
 package cn.penguin.provider.service.authentic.impl;
 
-import cn.penguin.provider.entity.authentic.User;
+import cn.penguin.provider.domain.dto.authentic.User;
 import cn.penguin.provider.mapper.authentic.UserMapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.security.core.userdetails.UserDetails;

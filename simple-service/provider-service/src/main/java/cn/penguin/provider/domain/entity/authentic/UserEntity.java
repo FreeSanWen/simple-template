@@ -1,4 +1,4 @@
-package cn.penguin.provider.entity.authentic;
+package cn.penguin.provider.domain.entity.authentic;
 
 import cn.penguin.common.mybatis.entity.BaseEntity;
 import lombok.AllArgsConstructor;

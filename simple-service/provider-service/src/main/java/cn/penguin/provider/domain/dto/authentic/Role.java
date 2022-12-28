@@ -1,5 +1,6 @@
-package cn.penguin.provider.entity.authentic;
+package cn.penguin.provider.domain.dto.authentic;
 
+import cn.penguin.provider.domain.entity.authentic.RoleEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import lombok.Builder;
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @TableName("sys_role")
-public class Role extends RoleEntity{
+public class Role extends RoleEntity {
 
     @Builder(toBuilder = true)
     public Role(Long id,String roleCode, String roleName, Integer isEnable, Integer isDelete, LocalDateTime createTime) {

@@ -1,7 +1,8 @@
-package cn.penguin.provider.entity.authentic;
+package cn.penguin.provider.domain.dto.authentic;
 
 import cn.penguin.common.core.utils.ObjectUtil;
 import cn.penguin.common.security.entity.LoginUser;
+import cn.penguin.provider.domain.entity.authentic.UserEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;

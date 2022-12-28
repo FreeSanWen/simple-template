@@ -1,7 +1,6 @@
 package cn.penguin.provider.common.strategy.impl;
 
 import cn.penguin.common.core.exception.BizException;
-import cn.penguin.common.core.utils.SpringUtil;
 import cn.penguin.common.security.entity.LoginUser;
 import cn.penguin.provider.common.strategy.LoginStrategy;
 import org.springframework.security.authentication.AuthenticationManager;

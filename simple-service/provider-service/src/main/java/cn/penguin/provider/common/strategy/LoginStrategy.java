@@ -14,8 +14,9 @@ public interface LoginStrategy {
     /**
      * 登录校验
      *
-     * @param loginUser
-     * @return
+     * @param loginUser 请求对象
+     * @param authenticationManager 认证管理器
+     * @return 完整用户对象
      */
     LoginUser check(LoginUser loginUser, AuthenticationManager authenticationManager);
 }

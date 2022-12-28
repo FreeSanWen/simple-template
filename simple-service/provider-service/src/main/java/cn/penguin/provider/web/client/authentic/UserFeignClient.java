@@ -3,7 +3,7 @@ package cn.penguin.provider.web.client.authentic;
 import cn.penguin.common.core.utils.JsonUtil;
 import cn.penguin.common.security.annotation.CurrentUser;
 import cn.penguin.common.security.entity.LoginUser;
-import cn.penguin.provider.entity.authentic.User;
+import cn.penguin.provider.domain.dto.authentic.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

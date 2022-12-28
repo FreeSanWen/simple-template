@@ -1,5 +1,6 @@
-package cn.penguin.provider.entity.dictionary;
+package cn.penguin.provider.domain.dto.dictionary;
 
+import cn.penguin.provider.domain.entity.dictionary.DictEntity;
 import lombok.Data;
 
 /**
