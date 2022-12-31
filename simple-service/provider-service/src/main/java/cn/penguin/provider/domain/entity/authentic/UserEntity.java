@@ -1,10 +1,7 @@
 package cn.penguin.provider.domain.entity.authentic;
 
 import cn.penguin.common.mybatis.entity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -14,10 +11,7 @@ import java.time.LocalDateTime;
  * @author wensy
  * @since 2022-11-26 11:02:58
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class UserEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -25,56 +19,43 @@ public class UserEntity extends BaseEntity {
     /**
      * 账号
      */
-    public String username;
+    private String username;
 
     /**
      * 密码
      */
-    public String password;
+    private String password;
 
     /**
      * 姓名
      */
-    public String realName;
+    private String realName;
 
     /**
      * 手机号码
      */
-    public String mobile;
+    private String mobile;
 
     /**
      * 1.锁定，0.禁用
      */
-    public Integer isLocked;
+    private Integer isLocked;
 
     /**
      * 1.启用，0.禁用
      */
-    public Integer isEnable;
+    private Integer isEnable;
 
     /**
      * 1.删除，0.正常
      */
-    public Integer isDelete;
+    private Integer isDelete;
 
 
     /**
      * 最后更新时间
      */
-    public LocalDateTime updateTime;
-
-    public UserEntity(Long id, String username, String password, String realName, String mobile, Integer isLocked, Integer isEnable, Integer isDelete, LocalDateTime createTime, LocalDateTime updateTime) {
-        super(id);
-        this.username = username;
-        this.password = password;
-        this.realName = realName;
-        this.mobile = mobile;
-        this.isLocked = isLocked;
-        this.isEnable = isEnable;
-        this.isDelete = isDelete;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-    }
+    private LocalDateTime updateTime;
 
 
 }

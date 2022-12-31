@@ -180,12 +180,12 @@
             </sqlCheck>
         </preConditions>
         <sql>
-            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832064, 1469301104255832064, 1469301104255832064);
-            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832065, 1469301104255832064, 1469301104255832065);
-            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832066, 1469301104255832064, 1469301104255832066);
-            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832067, 1469301104255832064, 1469301104255832067);
-            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832068, 1469301104255832064, 1469301104255832068);
-            INSERT INTO `simple-provider`.`sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832069, 1469301104255832064, 1469301104255832069);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832064, 1469301104255832064, 1469301104255832064);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832065, 1469301104255832064, 1469301104255832065);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832066, 1469301104255832064, 1469301104255832066);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832067, 1469301104255832064, 1469301104255832067);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832068, 1469301104255832064, 1469301104255832068);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832069, 1469301104255832064, 1469301104255832069);
 
         </sql>
     </changeSet>

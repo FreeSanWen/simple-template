@@ -21,6 +21,5 @@ public class DictEntity extends BaseEntity {
 
     private Integer isDelete;
 
-
     private LocalDateTime updateTime;
 }

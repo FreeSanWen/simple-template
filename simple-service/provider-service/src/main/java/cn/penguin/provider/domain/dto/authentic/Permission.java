@@ -3,25 +3,15 @@ package cn.penguin.provider.domain.dto.authentic;
 import cn.penguin.provider.domain.entity.authentic.PermissionEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author wensy
  * @since 2022/12/27 9:50
  */
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @TableName("sys_permission")
 public class Permission extends PermissionEntity {
-
-    @Builder(toBuilder = true)
-    public Permission(Long id,Long roleId, Long resourcesId) {
-        super(id, roleId, resourcesId);
-    }
 
     @Override
     public Wrapper wrapper() {
