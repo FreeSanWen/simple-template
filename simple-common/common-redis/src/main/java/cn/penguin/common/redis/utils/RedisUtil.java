@@ -25,10 +25,10 @@ import java.util.function.Function;
 @DependsOn("springUtil")
 public class RedisUtil {
 
-    private static final RedisTemplate redisTemplate = SpringUtil.getBean("redisTemplate");
+    private static final RedisTemplate REDIS_TEMPLATE = SpringUtil.getBean("redisTemplate");
 
     public static RedisTemplate getInstance() {
-        return redisTemplate;
+        return REDIS_TEMPLATE;
     }
 
     /**
@@ -42,7 +42,7 @@ public class RedisUtil {
             if (ObjectUtils.isEmpty(key)) {
                 return false;
             }
-            Boolean result = redisTemplate.hasKey(key);
+            Boolean result = REDIS_TEMPLATE.hasKey(key);
             return null == result ? false : result;
         } catch (Exception e) {
             log.error("redis 获取 key：{} 失败", key, e);
@@ -59,7 +59,7 @@ public class RedisUtil {
      */
     public static <T> T get(String key) {
         if (containsKey(key)) {
-            ValueOperations<String, T> operations = redisTemplate.opsForValue();
+            ValueOperations<String, T> operations = REDIS_TEMPLATE.opsForValue();
             return operations.get(key);
         }
         return null;
@@ -72,7 +72,7 @@ public class RedisUtil {
      * @param value
      */
     public static void set(String key, Object value, long expireTime, TimeUnit timeUnit) {
-        redisTemplate.opsForValue().set(key, value, expireTime, timeUnit);
+        REDIS_TEMPLATE.opsForValue().set(key, value, expireTime, timeUnit);
     }
 
     /**
@@ -83,7 +83,7 @@ public class RedisUtil {
      */
     public static boolean delete(String key) {
         if (containsKey(key)) {
-            redisTemplate.delete(key);
+            REDIS_TEMPLATE.delete(key);
         }
         return false;
     }
@@ -94,7 +94,7 @@ public class RedisUtil {
      * @return
      */
     public static HashOperations hash() {
-        return redisTemplate.opsForHash();
+        return REDIS_TEMPLATE.opsForHash();
     }
 
     /**

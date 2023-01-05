@@ -40,7 +40,7 @@ public class UserController {
     @GetMapping("/list")
     public List<User> list(User query){
         //优化后
-        return RedisUtil.lock(RedisConstant.USER_LOCK, s -> userService.selectList(s), query);
+        return RedisUtil.lock(RedisConstant.USER_LOCK, userService::selectList, query);
     }
 
     @GetMapping("/page")
