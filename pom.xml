@@ -18,8 +18,8 @@
         <spring-boot.version>2.7.6</spring-boot.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
         <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
-
-        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <mybatis.version>2.2.2</mybatis.version>
+        <pagehelper.version>1.4.5</pagehelper.version>
         <feign-okhttp.version>11.8</feign-okhttp.version>
         <activiti.version>7.1.0.M6</activiti.version>
         <guava.version>31.1-jre</guava.version>
@@ -63,11 +63,16 @@
                 <artifactId>feign-okhttp</artifactId>
                 <version>${feign-okhttp.version}</version>
             </dependency>
-            <!-- mybatis-plus -->
             <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
             <!-- activiti -->
             <dependency>

@@ -12,13 +12,12 @@ import org.springframework.stereotype.Service;
  * @since 2022/11/27 17:51:00
  */
 @Service
-public class DictService extends BaseService<Dict> implements IDictService {
+public class DictService extends BaseService<DictMapper, Dict> implements IDictService {
 
     private final DictMapper dictMapper;
 
     @Autowired
     public DictService(DictMapper dictMapper) {
-        super(dictMapper);
         this.dictMapper = dictMapper;
     }
 

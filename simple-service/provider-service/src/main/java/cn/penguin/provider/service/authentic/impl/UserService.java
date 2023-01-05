@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class UserService extends BaseService<User> implements IUserService {
+public class UserService extends BaseService<UserMapper, User> implements IUserService {
 
     private final UserMapper userMapper;
 
     @Autowired
     public UserService(UserMapper userMapper) {
-        super(userMapper);
         this.userMapper = userMapper;
     }
+
 }

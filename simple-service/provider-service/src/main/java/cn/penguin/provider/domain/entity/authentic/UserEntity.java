@@ -3,19 +3,27 @@ package cn.penguin.provider.domain.entity.authentic;
 import cn.penguin.common.mybatis.entity.BaseEntity;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
+
+
 
 /**
- * (User)实体类
+ * 用户信息表
  *
  * @author wensy
  * @since 2022-11-26 11:02:58
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity extends BaseEntity {
+    /**
+     * 主键
+     */
+    private Long id;
 
-    private static final long serialVersionUID = 1L;
-    
     /**
      * 账号
      */
@@ -27,7 +35,7 @@ public class UserEntity extends BaseEntity {
     private String password;
 
     /**
-     * 姓名
+     * 真实姓名
      */
     private String realName;
 
@@ -37,7 +45,12 @@ public class UserEntity extends BaseEntity {
     private String mobile;
 
     /**
-     * 1.锁定，0.禁用
+     * 证件号码
+     */
+    private String idNumber;
+
+    /**
+     * 1.锁定，0.正常
      */
     private Integer isLocked;
 
@@ -51,12 +64,35 @@ public class UserEntity extends BaseEntity {
      */
     private Integer isDelete;
 
+    /**
+     * 创建日期
+     */
+    private Date createTime;
 
     /**
-     * 最后更新时间
+     * 创建人id
      */
-    private LocalDateTime updateTime;
+    private Long creatorId;
 
+    /**
+     * 创建人姓名
+     */
+    private String creatorName;
 
+    /**
+     * 更新日期
+     */
+    private Date updateTime;
+
+    /**
+     * 更新人id
+     */
+    private Long updateId;
+
+    /**
+     * 更新人姓名
+     */
+    private String updateName;
+
+    private static final long serialVersionUID = 1L;
 }
-

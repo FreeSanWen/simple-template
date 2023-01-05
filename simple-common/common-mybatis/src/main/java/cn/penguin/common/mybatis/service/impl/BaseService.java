@@ -1,69 +1,58 @@
 package cn.penguin.common.mybatis.service.impl;
 
-import cn.penguin.common.core.utils.IdUtil;
 import cn.penguin.common.mybatis.entity.BaseEntity;
 import cn.penguin.common.mybatis.mapper.GenericMapper;
 import cn.penguin.common.mybatis.service.IBaseService;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author wensy
  * @since 2022-11-28 10:15
  */
-public class BaseService<T extends BaseEntity> implements IBaseService<T> {
+public class BaseService<E extends GenericMapper<T>, T extends BaseEntity> implements IBaseService<T> {
 
-    private final GenericMapper<T> baseMapper;
-
-    public BaseService(GenericMapper<T> baseMapper) {
-        this.baseMapper = baseMapper;
-    }
+    @Autowired
+    private E mapper;
 
     @Override
     public T insert(T record) {
-        if (Objects.nonNull(record) && Objects.isNull(record.getId())) {
-            record.setId(IdUtil.nextId());
-        }
-        baseMapper.insert(record);
-        return record;
+        return mapper.insert(record);
     }
 
     @Override
     public Boolean deleteById(Serializable id) {
-        baseMapper.deleteById(id);
-        return true;
+        return mapper.deleteByPrimaryKey(id) > 0;
     }
 
     @Override
     public Boolean update(T record) {
-        return baseMapper.updateById(record) > 0;
+        return mapper.updateByPrimaryKey(record) > 0;
     }
 
     @Override
     public T selectById(Serializable id) {
-        return baseMapper.selectById(id);
+        return mapper.selectByPrimaryKey(id);
     }
 
     @Override
     public T selectOne(T query) {
-        Wrapper<T> wrapper = query.wrapper();
-        return baseMapper.selectOne(wrapper);
+        return mapper.selectOne(query);
     }
 
     @Override
     public List<T> selectList(T query) {
-        Wrapper<T> wrapper = query.wrapper();
-        return baseMapper.selectList(wrapper);
+        return mapper.selectList(query);
     }
 
     @Override
-    public Page<T> selectPage(T query) {
-        Wrapper<T> wrapper = query.wrapper();
-        Page page = query.startPage();
-        return baseMapper.selectPage(page, wrapper);
+    public PageInfo<T> selectPage(T query) {
+        PageHelper.startPage(query.getPageNum(), query.getPageSize());
+        return new PageInfo<>(mapper.selectList(query));
     }
 }

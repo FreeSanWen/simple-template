@@ -2,22 +2,195 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.penguin.provider.mapper.authentic.UserMapper">
 
-    <resultMap type="cn.penguin.provider.domain.dto.authentic.User" id="UserMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+    <resultMap id="BaseResultMap" type="cn.penguin.provider.domain.dto.authentic.User">
+        <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="realName" column="real_name" jdbcType="VARCHAR"/>
-        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
-        <result property="isLocked" column="is_locked" jdbcType="INTEGER"/>
-        <result property="isEnable" column="is_enable" jdbcType="INTEGER"/>
-        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+        <result property="mobile" column="mobile" jdbcType="CHAR"/>
+        <result property="idNumber" column="id_number" jdbcType="VARCHAR"/>
+        <result property="isLocked" column="is_locked" jdbcType="TINYINT"/>
+        <result property="isEnable" column="is_enable" jdbcType="TINYINT"/>
+        <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="creatorId" column="creator_id" jdbcType="BIGINT"/>
+        <result property="creatorName" column="creator_name" jdbcType="VARCHAR"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="updateId" column="update_id" jdbcType="BIGINT"/>
+        <result property="updateName" column="update_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, username, password, real_name, mobile,is_locked, is_enable, is_delete, create_time, update_time
+        id,username,password,
+        real_name,mobile,id_number,
+        is_locked,is_enable,is_delete,
+        create_time,creator_id,creator_name,
+        update_time,update_id,update_name
     </sql>
 
+    <sql id="Base_Condition">
+        <where>
+            <if test="username != null and !''.equals(username.trim())">
+                username like concat('%',#{username},'%')
+            </if>
+            <if test="realName != null and !''.equals(realName.trim())">
+                and realName like concat('%',#{realName},'%')
+            </if>
+            <if test="mobile != null and !''.equals(mobile.trim())">
+                and mobile like concat('%',#{mobile},'%')
+            </if>
+        </where>
+    </sql>
+
+    <!-- ==================================常规方法开始================================== -->
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectOne" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        <include refid="Base_Condition"/>
+    </select>
+
+    <select id="selectList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        <include refid="Base_Condition"/>
+    </select>
+
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from sys_user
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.penguin.provider.domain.dto.authentic.User"
+            useGeneratedKeys="true">
+        insert into sys_user
+        ( id, username, password
+        , real_name, mobile, id_number
+        , is_locked, is_enable, is_delete
+        , create_time, creator_id, creator_name
+        , update_time, update_id, update_name)
+        values ( #{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+               , #{realName,jdbcType=VARCHAR}, #{mobile,jdbcType=CHAR}, #{idNumber,jdbcType=VARCHAR}
+               , #{isLocked,jdbcType=TINYINT}, #{isEnable,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}
+               , #{createTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, #{creatorName,jdbcType=VARCHAR}
+               , #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}, #{updateName,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.penguin.provider.domain.dto.authentic.User"
+            useGeneratedKeys="true">
+        insert into sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+            <if test="realName != null">real_name,</if>
+            <if test="mobile != null">mobile,</if>
+            <if test="idNumber != null">id_number,</if>
+            <if test="isLocked != null">is_locked,</if>
+            <if test="isEnable != null">is_enable,</if>
+            <if test="isDelete != null">is_delete,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="creatorId != null">creator_id,</if>
+            <if test="creatorName != null">creator_name,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateId != null">update_id,</if>
+            <if test="updateName != null">update_name,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=BIGINT},</if>
+            <if test="username != null">#{username,jdbcType=VARCHAR},</if>
+            <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+            <if test="realName != null">#{realName,jdbcType=VARCHAR},</if>
+            <if test="mobile != null">#{mobile,jdbcType=CHAR},</if>
+            <if test="idNumber != null">#{idNumber,jdbcType=VARCHAR},</if>
+            <if test="isLocked != null">#{isLocked,jdbcType=TINYINT},</if>
+            <if test="isEnable != null">#{isEnable,jdbcType=TINYINT},</if>
+            <if test="isDelete != null">#{isDelete,jdbcType=TINYINT},</if>
+            <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+            <if test="creatorId != null">#{creatorId,jdbcType=BIGINT},</if>
+            <if test="creatorName != null">#{creatorName,jdbcType=VARCHAR},</if>
+            <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+            <if test="updateId != null">#{updateId,jdbcType=BIGINT},</if>
+            <if test="updateName != null">#{updateName,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.penguin.provider.domain.dto.authentic.User">
+        update sys_user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=CHAR},
+            </if>
+            <if test="idNumber != null">
+                id_number = #{idNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="isLocked != null">
+                is_locked = #{isLocked,jdbcType=TINYINT},
+            </if>
+            <if test="isEnable != null">
+                is_enable = #{isEnable,jdbcType=TINYINT},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId,jdbcType=BIGINT},
+            </if>
+            <if test="creatorName != null">
+                creator_name = #{creatorName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId,jdbcType=BIGINT},
+            </if>
+            <if test="updateName != null">
+                update_name = #{updateName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.penguin.provider.domain.dto.authentic.User">
+        update sys_user
+        set username     = #{username,jdbcType=VARCHAR},
+            password     = #{password,jdbcType=VARCHAR},
+            real_name    = #{realName,jdbcType=VARCHAR},
+            mobile       = #{mobile,jdbcType=CHAR},
+            id_number    = #{idNumber,jdbcType=VARCHAR},
+            is_locked    = #{isLocked,jdbcType=TINYINT},
+            is_enable    = #{isEnable,jdbcType=TINYINT},
+            is_delete    = #{isDelete,jdbcType=TINYINT},
+            create_time  = #{createTime,jdbcType=TIMESTAMP},
+            creator_id   = #{creatorId,jdbcType=BIGINT},
+            creator_name = #{creatorName,jdbcType=VARCHAR},
+            update_time  = #{updateTime,jdbcType=TIMESTAMP},
+            update_id    = #{updateId,jdbcType=BIGINT},
+            update_name  = #{updateName,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!-- ==================================常规方法结束================================== -->
 
 </mapper>

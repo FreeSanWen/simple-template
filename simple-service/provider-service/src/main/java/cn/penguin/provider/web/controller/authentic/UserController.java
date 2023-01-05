@@ -8,7 +8,7 @@ import cn.penguin.common.web.enums.BusinessModuleEnum;
 import cn.penguin.common.web.enums.BusinessOperationEnum;
 import cn.penguin.provider.domain.dto.authentic.User;
 import cn.penguin.provider.service.authentic.IUserService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +45,7 @@ public class UserController {
 
     @GetMapping("/page")
     @RequireParam({"#query.pageNum","#query.pageSize"})
-    public Page<User> page(User query){
+    public PageInfo<User> page(User query){
         return userService.selectPage(query);
     }
 

@@ -6,6 +6,7 @@ import cn.penguin.provider.common.strategy.impl.UsernamePasswordLoginStrategy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author wensy
@@ -22,7 +23,10 @@ public class LoginContext {
         loginMap.put(LoginEnum.QRCODE.getCode(), null);
     }
 
-    public static LoginStrategy getInstance(int code){
+    public static LoginStrategy getInstance(Integer code){
+        if (Objects.isNull(code)) {
+            code = LoginEnum.USERNAME.getCode();
+        }
         return loginMap.get(code);
     }
 }

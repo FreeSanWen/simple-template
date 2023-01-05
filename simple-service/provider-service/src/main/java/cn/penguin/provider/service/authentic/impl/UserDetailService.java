@@ -2,7 +2,6 @@ package cn.penguin.provider.service.authentic.impl;
 
 import cn.penguin.provider.domain.dto.authentic.User;
 import cn.penguin.provider.mapper.authentic.UserMapper;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,7 +22,7 @@ public class UserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
+        User user = userMapper.selectOne(User.builder().username(username).build());
         return User.convert(user);
     }
 

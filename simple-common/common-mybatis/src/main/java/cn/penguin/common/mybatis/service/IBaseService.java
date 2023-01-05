@@ -1,7 +1,7 @@
 package cn.penguin.common.mybatis.service;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -68,6 +68,6 @@ public interface IBaseService<T> {
      * @param query
      * @return
      */
-    Page<T> selectPage(T query);
+    PageInfo<T> selectPage(T query);
 
 }
