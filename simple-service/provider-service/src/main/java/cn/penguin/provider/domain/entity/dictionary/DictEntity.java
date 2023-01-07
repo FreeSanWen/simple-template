@@ -3,23 +3,44 @@ package cn.penguin.provider.domain.entity.dictionary;
 import cn.penguin.common.mybatis.entity.BaseEntity;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
- * (Dict)实体类
- *
- * @author wensy
- * @since 2022-11-27 1:24
+ * 系统字典类型表
+ * @TableName sys_dict
  */
 @Data
-public class DictEntity extends BaseEntity {
-    private static final long serialVersionUID = 1L;
+public class DictEntity extends BaseEntity implements Serializable {
+    /**
+     * 
+     */
+    private Long id;
 
+    /**
+     * 
+     */
     private String dictCode;
 
+    /**
+     * 
+     */
     private String dictName;
 
+    /**
+     * 
+     */
     private Integer isDelete;
 
-    private LocalDateTime updateTime;
+    /**
+     * 
+     */
+    private Date createTime;
+
+    /**
+     * 
+     */
+    private Date updateTime;
+
+    private static final long serialVersionUID = 1L;
 }

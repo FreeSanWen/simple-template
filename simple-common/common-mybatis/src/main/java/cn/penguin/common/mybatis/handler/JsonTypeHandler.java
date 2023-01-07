@@ -14,7 +14,9 @@ public class JsonTypeHandler<T extends Object> extends BaseTypeHandler<T> {
     private Class<T> clazz;
 
     public JsonTypeHandler(Class<T> clazz) {
-        if (clazz == null) throw new IllegalArgumentException("Type argument cannot be null");
+        if (clazz == null) {
+            throw new IllegalArgumentException("Type argument cannot be null");
+        }
         this.clazz = clazz;
     }
 

@@ -16,5 +16,79 @@
         is_delete,create_time,update_time
     </sql>
 
+    <!-- ==================================常规方法开始================================== -->
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_dict
+        where  id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sys_dict
+        where  id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.penguin.provider.domain.dto.dictionary.Dict" useGeneratedKeys="true">
+        insert into sys_dict
+        ( id,dict_code,dict_name
+        ,is_delete,create_time,update_time
+        )
+        values (#{id,jdbcType=BIGINT},#{dictCode,jdbcType=VARCHAR},#{dictName,jdbcType=VARCHAR}
+               ,#{isDelete,jdbcType=TINYINT},#{createTime,jdbcType=TIMESTAMP},#{updateTime,jdbcType=TIMESTAMP}
+               )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.penguin.provider.domain.dto.dictionary.Dict" useGeneratedKeys="true">
+        insert into sys_dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="dictCode != null">dict_code,</if>
+            <if test="dictName != null">dict_name,</if>
+            <if test="isDelete != null">is_delete,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=BIGINT},</if>
+            <if test="dictCode != null">#{dictCode,jdbcType=VARCHAR},</if>
+            <if test="dictName != null">#{dictName,jdbcType=VARCHAR},</if>
+            <if test="isDelete != null">#{isDelete,jdbcType=TINYINT},</if>
+            <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+            <if test="updateTime != null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.penguin.provider.domain.dto.dictionary.Dict">
+        update sys_dict
+        <set>
+            <if test="dictCode != null">
+                dict_code = #{dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dictName != null">
+                dict_name = #{dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where   id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.penguin.provider.domain.dto.dictionary.Dict">
+        update sys_dict
+        set
+            dict_code =  #{dictCode,jdbcType=VARCHAR},
+            dict_name =  #{dictName,jdbcType=VARCHAR},
+            is_delete =  #{isDelete,jdbcType=TINYINT},
+            create_time =  #{createTime,jdbcType=TIMESTAMP},
+            update_time =  #{updateTime,jdbcType=TIMESTAMP}
+        where   id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!-- ==================================常规方法结束================================== -->
 
 </mapper>

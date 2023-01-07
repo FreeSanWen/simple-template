@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
  * @since 2022/11/27 17:51:00
  */
 @Service
-public class DictItemService extends BaseService<DictItem> implements IDictItemService {
+public class DictItemService extends BaseService<DictItemMapper, DictItem> implements IDictItemService {
+
 
     private final DictItemMapper dictItemMapper;
 
     @Autowired
     public DictItemService(DictItemMapper dictItemMapper) {
-        super(dictItemMapper);
         this.dictItemMapper = dictItemMapper;
     }
 

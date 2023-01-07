@@ -46,7 +46,7 @@ public class RedisConfig {
     private RedisProperties redisProperties;
 
     @Bean
-    public GenericObjectPoolConfig lettucePoolConfig(){
+    public GenericObjectPoolConfig lettucePoolConfig() {
         GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
         return genericObjectPoolConfig;
     }
@@ -90,8 +90,8 @@ public class RedisConfig {
         return template;
     }
 
-    private static ObjectMapper getObjectMapper(){
-            ObjectMapper redisMapper = new ObjectMapper();
+    private static ObjectMapper getObjectMapper() {
+        ObjectMapper redisMapper = new ObjectMapper();
         redisMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         //带class信息
         redisMapper.activateDefaultTyping(LaissezFaireSubTypeValidator.instance, ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
@@ -109,7 +109,7 @@ public class RedisConfig {
         redisMapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_EMPTY);
         redisMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         //securityUser 中 有些字段无法反序列化
-        redisMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+        redisMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         redisMapper.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         return redisMapper;
     }

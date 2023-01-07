@@ -100,12 +100,14 @@ public class SecurityUtil {
      * @param user
      */
     private static void refreshToken(LoginUser user) {
-        user.setLoginTime(LocalDateUtil.now());
-        user.setExpireTime(user.getLoginTime() + SecurityConstant.TOKEN_EXPIRE_TIME_MILL);
-        String tokenKey = buildTokenKey(user.getToken());
-        String userKey = buildUserKey(user.getId());
-        RedisUtil.set(tokenKey, user, SecurityConstant.TOKEN_EXPIRE_TIME, TimeUnit.HOURS);
-        RedisUtil.set(userKey, user.getToken(), SecurityConstant.TOKEN_EXPIRE_TIME, TimeUnit.HOURS);
+        if (Objects.nonNull(user)) {
+            user.setLoginTime(LocalDateUtil.now());
+            user.setExpireTime(user.getLoginTime() + SecurityConstant.TOKEN_EXPIRE_TIME_MILL);
+            String tokenKey = buildTokenKey(user.getToken());
+            String userKey = buildUserKey(user.getId());
+            RedisUtil.set(tokenKey, user, SecurityConstant.TOKEN_EXPIRE_TIME, TimeUnit.HOURS);
+            RedisUtil.set(userKey, user.getToken(), SecurityConstant.TOKEN_EXPIRE_TIME, TimeUnit.HOURS);
+        }
     }
 
     public static String createToken(LoginUser user) {

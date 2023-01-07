@@ -7,7 +7,6 @@ import cn.penguin.provider.domain.dto.authentic.Role;
 import cn.penguin.provider.domain.dto.authentic.User;
 import cn.penguin.provider.mapper.authentic.ResourcesMapper;
 import cn.penguin.provider.mapper.authentic.UserMapper;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

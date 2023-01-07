@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.penguin.provider.mapper.authentic.ResourcesMapper">
+
+    <resultMap id="BaseResultMap" type="cn.penguin.provider.domain.dto.authentic.Resources">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="resourcesName" column="resources_name" jdbcType="VARCHAR"/>
+            <result property="path" column="path" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="TINYINT"/>
+            <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
+            <result property="module" column="module" jdbcType="SMALLINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,resources_name,path,
+        type,parent_id,module,
+        create_time
+    </sql>
+
+    <!-- ==================================常规方法开始================================== -->
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_resources
+        where  id = #{id,jdbcType=BIGINT} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sys_resources
+        where  id = #{id,jdbcType=BIGINT} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.penguin.provider.domain.dto.authentic.Resources" useGeneratedKeys="true">
+        insert into sys_resources
+        ( id,resources_name,path
+        ,type,parent_id,module
+        ,create_time)
+        values (#{id,jdbcType=BIGINT},#{resourcesName,jdbcType=VARCHAR},#{path,jdbcType=VARCHAR}
+        ,#{type,jdbcType=TINYINT},#{parentId,jdbcType=BIGINT},#{module,jdbcType=SMALLINT}
+        ,#{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.penguin.provider.domain.dto.authentic.Resources" useGeneratedKeys="true">
+        insert into sys_resources
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="resourcesName != null">resources_name,</if>
+                <if test="path != null">path,</if>
+                <if test="type != null">type,</if>
+                <if test="parentId != null">parent_id,</if>
+                <if test="module != null">module,</if>
+                <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=BIGINT},</if>
+                <if test="resourcesName != null">#{resourcesName,jdbcType=VARCHAR},</if>
+                <if test="path != null">#{path,jdbcType=VARCHAR},</if>
+                <if test="type != null">#{type,jdbcType=TINYINT},</if>
+                <if test="parentId != null">#{parentId,jdbcType=BIGINT},</if>
+                <if test="module != null">#{module,jdbcType=SMALLINT},</if>
+                <if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.penguin.provider.domain.dto.authentic.Resources">
+        update sys_resources
+        <set>
+                <if test="resourcesName != null">
+                    resources_name = #{resourcesName,jdbcType=VARCHAR},
+                </if>
+                <if test="path != null">
+                    path = #{path,jdbcType=VARCHAR},
+                </if>
+                <if test="type != null">
+                    type = #{type,jdbcType=TINYINT},
+                </if>
+                <if test="parentId != null">
+                    parent_id = #{parentId,jdbcType=BIGINT},
+                </if>
+                <if test="module != null">
+                    module = #{module,jdbcType=SMALLINT},
+                </if>
+                <if test="createTime != null">
+                    create_time = #{createTime,jdbcType=TIMESTAMP},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=BIGINT} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.penguin.provider.domain.dto.authentic.Resources">
+        update sys_resources
+        set 
+            resources_name =  #{resourcesName,jdbcType=VARCHAR},
+            path =  #{path,jdbcType=VARCHAR},
+            type =  #{type,jdbcType=TINYINT},
+            parent_id =  #{parentId,jdbcType=BIGINT},
+            module =  #{module,jdbcType=SMALLINT},
+            create_time =  #{createTime,jdbcType=TIMESTAMP}
+        where   id = #{id,jdbcType=BIGINT} 
+    </update>
+
+    <!-- ==================================常规方法结束================================== -->
+
+</mapper>
