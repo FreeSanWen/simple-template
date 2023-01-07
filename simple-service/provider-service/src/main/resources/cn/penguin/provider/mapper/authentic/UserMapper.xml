@@ -215,9 +215,10 @@
     <!-- ==================================常规方法结束================================== -->
 
     <select id="loadUserByUsername" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List_With_Table"/>
+        select <include refid="Base_Column_List_With_Table"/>,
+        r.id role_id,r.role_name
         from sys_user t
-        inner join sys_identity i on i.user_id = t.id
+        inner join sys_identity i on i.user_id = t.id and i.is_used = 1
         inner join sys_role r on r.id = i.role_id
         where t.username = #{username}
     </select>

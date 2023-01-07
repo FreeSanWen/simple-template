@@ -1,7 +1,9 @@
 package cn.penguin.provider.domain.dto.authentic;
 
 import cn.penguin.provider.domain.entity.authentic.ResourcesEntity;
-import lombok.*;
+import lombok.Data;
+
+import java.util.List;
 
 /**
  * @author wensy
@@ -10,4 +12,8 @@ import lombok.*;
 @Data
 public class Resources extends ResourcesEntity {
 
+    /**
+     * 子集合
+     */
+    private List<Resources> childList;
 }

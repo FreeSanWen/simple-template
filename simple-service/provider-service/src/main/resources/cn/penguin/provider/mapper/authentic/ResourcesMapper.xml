@@ -101,4 +101,12 @@
 
     <!-- ==================================常规方法结束================================== -->
 
+    <select id="selectListByRole" resultMap="BaseResultMap">
+        select
+            t.id,t.resources_name,t.path,t.parent_id
+        from sys_resources t
+        inner join sys_permission p on p.resources_id = t.id
+        inner join sys_role r on r.id = p.role_id
+        where r.is_delete = 0 and t.type = #{type} and r.id = #{roleId}
+    </select>
 </mapper>
