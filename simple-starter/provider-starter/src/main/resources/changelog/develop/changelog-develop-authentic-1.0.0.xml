@@ -189,4 +189,26 @@
 
         </sql>
     </changeSet>
+
+    <changeSet id="develop-authentic-100-011" author="wensy">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from sys_resources where id = 1469301104255832070;
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`, `module`) VALUES (1469301104255832070, '查询用户列表', '/user/page', 2, 0, 10101);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`, `module`) VALUES (1469301104255832071, '增加用户', '/user/save', 2, 0, 10101);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`, `module`) VALUES (1469301104255832072, '修改用户', '/user/update', 2, 0, 10101);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`, `module`) VALUES (1469301104255832073, '删除用户', '/user/delete', 2, 0, 10101);
+            INSERT INTO `sys_resources` (`id`, `resources_name`, `path`, `type`, `parent_id`, `module`) VALUES (1469301104255832074, '查询用户', '/user/query', 2, 0, 10101);
+
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832070, 1469301104255832064, 1469301104255832070);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832071, 1469301104255832064, 1469301104255832071);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832072, 1469301104255832064, 1469301104255832072);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832073, 1469301104255832064, 1469301104255832073);
+            INSERT INTO `sys_permission` (`id`, `role_id`, `resources_id`) VALUES (1469301104255832074, 1469301104255832064, 1469301104255832074);
+
+        </sql>
+    </changeSet>
 </databaseChangeLog>

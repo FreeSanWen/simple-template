@@ -1,11 +1,15 @@
 package cn.penguin.common.security.entity;
 
+import cn.penguin.common.core.utils.CollectionsUtil;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author wensy
@@ -69,13 +73,27 @@ public class LoginUser implements UserDetails, Serializable {
      * LoginEnum
      */
     private Integer checkType;
+    /**
+     * 当前角色id
+     */
+    private Long roleId;
 
-    private String roleId;
-
+    /**
+     * 当前角色名称
+     */
     private String roleName;
+
+    /**
+     * 接口权限集合
+     */
+    private List<String> permissionList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (CollectionsUtil.isNotEmpty(permissionList)) {
+            List<SimpleGrantedAuthority> collect = permissionList.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+            return collect;
+        }
         return null;
     }
 

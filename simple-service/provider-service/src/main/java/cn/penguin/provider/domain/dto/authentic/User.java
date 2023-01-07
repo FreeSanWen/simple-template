@@ -19,6 +19,8 @@ import org.springframework.beans.BeanUtils;
 @TableName("sys_user")
 public class User extends UserEntity {
 
+    private Role role;
+
     public static LoginUser convert(User user){
         LoginUser loginUser = new LoginUser();
         BeanUtils.copyProperties(user, loginUser);

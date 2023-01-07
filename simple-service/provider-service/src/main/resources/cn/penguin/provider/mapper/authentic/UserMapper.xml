@@ -13,11 +13,39 @@
         <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <association property="role" javaType="cn.penguin.provider.domain.dto.authentic.Role">
+            <result column="role_id" property="id"></result>
+            <result column="role_name" property="roleName"></result>
+        </association>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, username, password, real_name, mobile,is_locked, is_enable, is_delete, create_time, update_time
+        id, username, password, real_name, mobile, id_number, is_locked, is_enable, is_delete, create_time, creator_id, creator_name, update_time, update_id, update_name
     </sql>
 
+    <sql id="Base_Column_List_With_Table">
+        t.id,
+            t.username,
+            t.password,
+            t.real_name,
+            t.mobile,
+            t.id_number,
+            t.is_locked,
+            t.is_enable,
+            t.is_delete,
+            t.create_time,
+            t.creator_id,
+            t.creator_name,
+            t.update_time,
+            t.update_id,
+            t.update_name
+    </sql>
 
+    <select id="loadUserByUsername" resultMap="UserMap">
+        select <include refid="Base_Column_List_With_Table"/>
+        from sys_user t
+        inner join sys_identity i on i.user_id = t.id
+        inner join sys_role r on r.id = i.role_id
+        where t.username = #{username}
+    </select>
 </mapper>
