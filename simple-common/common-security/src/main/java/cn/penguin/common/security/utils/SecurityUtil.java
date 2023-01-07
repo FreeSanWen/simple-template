@@ -12,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -110,12 +112,15 @@ public class SecurityUtil {
         }
     }
 
-    public static String createToken(LoginUser user) {
+    public static Map<String,String> createToken(LoginUser user) {
         delete(user);
         String token = IdUtil.getIdStr();
         user.setToken(token);
         refreshToken(user);
-        return token;
+        Map<String, String> map = new HashMap<>();
+        map.put("tokenValue", SecurityConstant.TOKEN_PREFIX + token);
+        map.put("tokenName", SecurityConstant.AUTHORIZATION);
+        return map;
     }
 
     public static void delete(LoginUser user) {

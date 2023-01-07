@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 
 /**
  * @author wensy
@@ -27,7 +29,7 @@ public class LoginController {
 
     @PostMapping("/doLogin")
     @RequireParam({"#user.username","#user.password"})
-    public String doLogin(@RequestBody LoginUser user) {
+    public Map<String,String> doLogin(@RequestBody LoginUser user) {
         return loginService.doLogin(user);
     }
 
